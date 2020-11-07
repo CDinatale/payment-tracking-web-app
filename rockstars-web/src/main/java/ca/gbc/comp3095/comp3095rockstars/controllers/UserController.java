@@ -10,16 +10,19 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api/public")
+@RequestMapping("api/public")
 public class UserController {
     UserRepository userRepository;
 
+    public UserController(UserRepository userRepository){
+        this.userRepository = userRepository;
+    }
     /*@RequestMapping({"/index"})
     public String listUsers(){
         return "users/index";
     }*/
 
-    @GetMapping("test")
+    @GetMapping("users")
     public List<User> allUsers(){
         return this.userRepository.findAll();
     }
