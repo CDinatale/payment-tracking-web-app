@@ -1,4 +1,4 @@
-package comp3095rockstars;
+package ca.gbc.comp3095.comp3095rockstars;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
