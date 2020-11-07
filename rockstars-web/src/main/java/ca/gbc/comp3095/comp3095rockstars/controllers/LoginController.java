@@ -9,4 +9,7 @@ public class LoginController {
 
     @RequestMapping({"", "/", "index.html"})
     public String index(){return "index";}
+
+    @RequestMapping({"dashboard"})
+    public String dashboard(){return "dashboard";}
 }

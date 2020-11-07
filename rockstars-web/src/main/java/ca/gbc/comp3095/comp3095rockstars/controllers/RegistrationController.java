@@ -29,7 +29,7 @@ public class RegistrationController {
                     registrationForm.getEmailId(), registrationForm.getPassword());
         }
         userRepository.save(user);
-        return "registration-success";
+        return "index";
     }
 /*
     @Autowired
