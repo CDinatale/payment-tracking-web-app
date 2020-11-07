@@ -18,7 +18,7 @@ public class RegistrationForm {
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.role = "USER";
     }
 
     public String getFirstName() {
@@ -55,5 +55,9 @@ public class RegistrationForm {
 
     public String getRole() {
         return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

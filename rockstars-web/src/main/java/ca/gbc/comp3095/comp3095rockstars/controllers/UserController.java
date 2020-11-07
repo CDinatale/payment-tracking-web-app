@@ -17,10 +17,6 @@ public class UserController {
     public UserController(UserRepository userRepository){
         this.userRepository = userRepository;
     }
-    /*@RequestMapping({"/index"})
-    public String listUsers(){
-        return "users/index";
-    }*/
 
     @GetMapping("users")
     public List<User> allUsers(){

@@ -9,7 +9,10 @@ import java.util.List;
 @Entity
 public class User extends BaseEntity{
 
+    @Column(nullable = false)
     private String firstName;
+
+    @Column(nullable = false)
     private String lastName;
 
     @Column(nullable = false)
@@ -22,6 +25,7 @@ public class User extends BaseEntity{
     @GeneratedValue (strategy = GenerationType.AUTO)
     private long id;
 
+    @Column
     private String roles;
 
     public User(String firstName, String lastName, String email, String password, String roles) {
@@ -29,7 +33,12 @@ public class User extends BaseEntity{
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.roles = roles;
+
+        if(roles == null){
+            this.roles = "USER";
+        }else{
+            this.roles = roles;
+        }
     }
 
     public User() {}
@@ -79,4 +88,14 @@ public class User extends BaseEntity{
         return roles;
     }
 
+    public void setRoles() {
+        this.roles = "USER";
+    }
+
+    public List<String> getRoleList(){
+        if(this.roles.length() > 0){
+            return Arrays.asList(this.roles.split(","));
+        }
+        return new ArrayList<>();
+    }
 }

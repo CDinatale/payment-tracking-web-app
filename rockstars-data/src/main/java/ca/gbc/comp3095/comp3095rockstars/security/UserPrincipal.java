@@ -1,7 +1,9 @@
 package ca.gbc.comp3095.comp3095rockstars.security;
 
+import ca.gbc.comp3095.comp3095rockstars.model.User;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
@@ -16,13 +18,17 @@ public class UserPrincipal implements UserDetails {
         this.user = user;
     }
 
-    public UserPrincipal(ca.gbc.comp3095.comp3095rockstars.model.User user) {
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> authorityList = new ArrayList<>();
-        return null;
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+        // Extract list of roles (ROLE_name)
+        this.user.getRoleList().forEach(r -> {
+            GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + r);
+            authorities.add(authority);
+        });
+
+        return authorities;
     }
 
     @Override
@@ -32,7 +38,7 @@ public class UserPrincipal implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.user.getUsername();
+        return this.user.getEmail();
     }
 
     @Override
