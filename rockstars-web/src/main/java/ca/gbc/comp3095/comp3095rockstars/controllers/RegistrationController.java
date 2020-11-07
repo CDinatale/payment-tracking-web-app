@@ -26,7 +26,7 @@ public class RegistrationController {
         User user = null;
         if(null != registrationForm){
             user = new User(registrationForm.getFirstName(), registrationForm.getLastName(),
-                    registrationForm.getEmailId(), registrationForm.getPassword());
+                    registrationForm.getEmail(), registrationForm.getPassword(), registrationForm.getRole());
         }
         userRepository.save(user);
         return "index";

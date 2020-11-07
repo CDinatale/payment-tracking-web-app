@@ -2,10 +2,11 @@ package ca.gbc.comp3095.comp3095rockstars.model;
 
 public class Role extends BaseEntity{
     private String roleTitle;
-
-
     private User user;
-    private UserRole userRole;
+
+    public Role(String roleTitle) {
+        this.roleTitle = roleTitle;
+    }
 
     public String getRoleTitle() {
         return roleTitle;
@@ -21,13 +22,5 @@ public class Role extends BaseEntity{
 
     public void setUser(User user) {
         this.user = user;
-    }
-
-    public UserRole getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
     }
 }

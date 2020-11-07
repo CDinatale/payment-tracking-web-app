@@ -4,20 +4,21 @@ public class RegistrationForm {
 
     private String firstName;
     private String lastName;
-    private String emailId;
+    private String email;
     private String password;
+    private String role;
 
     //no arg constructor
     public RegistrationForm(){
         super();
-        //TODO
     }
 
-    public RegistrationForm(String firstName, String lastName, String emailId, String password) {
+    public RegistrationForm(String firstName, String lastName, String email, String password, String role) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.emailId = emailId;
+        this.email = email;
         this.password = password;
+        this.role = role;
     }
 
     public String getFirstName() {
@@ -36,12 +37,12 @@ public class RegistrationForm {
         this.lastName = lastName;
     }
 
-    public String getEmailId() {
-        return emailId;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -50,5 +51,9 @@ public class RegistrationForm {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
     }
 }

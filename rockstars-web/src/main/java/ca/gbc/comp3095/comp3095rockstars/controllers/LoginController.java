@@ -1,15 +1,18 @@
 package ca.gbc.comp3095.comp3095rockstars.controllers;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 
 @RequestMapping("/")
 @Controller
 public class LoginController {
 
-    @RequestMapping({"", "/", "index.html"})
+    @GetMapping({"", "/", "index.html"})
     public String index(){return "index";}
 
-    @RequestMapping({"dashboard"})
-    public String dashboard(){return "dashboard";}
+    @PostMapping({"dashboard"})
+    public String dashboard(){return "/users/dashboard";}
 }
