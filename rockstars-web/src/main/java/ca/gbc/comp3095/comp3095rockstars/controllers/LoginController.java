@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class LoginController {
 
-    @GetMapping({"", "/", "index.html"})
+    @GetMapping({"", "/", "index"})
     public String index(){return "index";}
 
-    @PostMapping({"dashboard"})
-    public String dashboard(){return "/users/dashboard";}
+    @PostMapping({"/users/dashboard"})
+    public String dashboard(){
+
+        return "/users/dashboard";
+    }
 }

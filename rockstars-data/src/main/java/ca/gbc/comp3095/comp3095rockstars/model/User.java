@@ -1,5 +1,8 @@
 package ca.gbc.comp3095.comp3095rockstars.model;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;

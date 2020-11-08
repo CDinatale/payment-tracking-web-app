@@ -1,5 +1,7 @@
 package ca.gbc.comp3095.comp3095rockstars.model;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 public class RegistrationForm {
 
     private String firstName;
@@ -13,7 +15,7 @@ public class RegistrationForm {
         super();
     }
 
-    public RegistrationForm(String firstName, String lastName, String email, String password, String role) {
+    public RegistrationForm(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

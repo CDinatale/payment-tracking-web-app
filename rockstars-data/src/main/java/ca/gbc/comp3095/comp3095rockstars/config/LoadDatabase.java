@@ -13,7 +13,7 @@ public class LoadDatabase implements CommandLineRunner {
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
-    public LoadDatabase(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public LoadDatabase(UserRepository userRepository , PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
