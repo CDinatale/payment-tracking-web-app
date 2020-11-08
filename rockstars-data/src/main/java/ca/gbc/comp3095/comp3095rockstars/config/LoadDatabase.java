@@ -1,3 +1,11 @@
+/** Project: < Comp3095 Rockstars Project >
+        * Assignment: < assignment 2 >
+        * Author(s): < Nikola Vojinovic, Corradina Dinatale, Noah Huboux, Alex Balez>
+        * Student Number: < 101181089, 100645103, 101117858,>
+        * Date: 11/08/2020
+        * Description: <Loads the database and inputs the first two Users into the database>*/
+
+
 package ca.gbc.comp3095.comp3095rockstars.config;
 import ca.gbc.comp3095.comp3095rockstars.repository.UserRepository;
 import ca.gbc.comp3095.comp3095rockstars.model.User;
@@ -24,8 +32,8 @@ public class LoadDatabase implements CommandLineRunner {
         this.userRepository.deleteAll();
 
         // Crete users
-        User bilbo = new User("Bilbo", "Baggins", "admin@isp.net", passwordEncoder.encode("password1"), "ADMIN");
-        User admin = new User("Frodo", "Baggins", "frodo.baggins@gmail.com", passwordEncoder.encode("password2"), "USER");
+        User bilbo = new User("Bilbo", "Baggins", "30 Stadium Rd","admin@isp.net", passwordEncoder.encode("P@assword1"), "ADMIN");
+        User admin = new User("Frodo", "Baggins", "30 Stadium Rd","frodo.baggins@gmail.com", passwordEncoder.encode("P@ssword2"), "USER");
 
         List<User> users = Arrays.asList(bilbo,admin);
 

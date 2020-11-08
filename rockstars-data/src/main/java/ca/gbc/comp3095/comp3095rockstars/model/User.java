@@ -1,3 +1,10 @@
+/** Project: < Comp3095 Rockstars Project >
+ * Assignment: < assignment 2 >
+ * Author(s): < Nikola Vojinovic, Corradina Dinatale, Noah Huboux, Alex Balez>
+ * Student Number: < 101181089, 100645103, 101117858, >
+ * Date: 11/08/2020
+ * Description: <User Class that creates the entity for the database>*/
+
 package ca.gbc.comp3095.comp3095rockstars.model;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,6 +26,9 @@ public class User extends BaseEntity{
     private String lastName;
 
     @Column(nullable = false)
+    private String address;
+
+    @Column(nullable = false)
     private String email;
 
     @Column(nullable = false)
@@ -31,9 +41,10 @@ public class User extends BaseEntity{
     @Column
     private String roles;
 
-    public User(String firstName, String lastName, String email, String password, String roles) {
+    public User(String firstName, String lastName, String address, String email, String password, String roles) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.address = address;
         this.email = email;
         this.password = password;
 
@@ -93,6 +104,14 @@ public class User extends BaseEntity{
 
     public void setRoles() {
         this.roles = "USER";
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public List<String> getRoleList(){

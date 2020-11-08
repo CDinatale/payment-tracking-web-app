@@ -1,3 +1,9 @@
+/** Project: < Comp3095 Rockstars Project >
+ * Assignment: < assignment 2 >
+ * Author(s): < Nikola Vojinovic, Corradina Dinatale, Noah Huboux, Alex Balez>
+ * Student Number: < 101181089, 100645103, 101117858, >
+ * Date: 11/08/2020
+ * Description: <Admin controller that sends to admin dashboard and tabs for admin>*/
 package ca.gbc.comp3095.comp3095rockstars.controllers;
 
 import org.springframework.stereotype.Controller;

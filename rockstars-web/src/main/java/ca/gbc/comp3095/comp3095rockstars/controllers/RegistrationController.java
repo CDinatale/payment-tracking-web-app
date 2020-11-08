@@ -1,14 +1,27 @@
+/** Project: < Comp3095 Rockstars Project >
+ * Assignment: < assignment 2 >
+ * Author(s): < Nikola Vojinovic, Corradina Dinatale, Noah Huboux, Alex Balez>
+ * Student Number: < 101181089, 100645103, 101117858, >
+ * Date: 11/08/2020
+ * Description: <Registration controller that sends to login and updates the user repository>*/
+
 package ca.gbc.comp3095.comp3095rockstars.controllers;
 
 
 import ca.gbc.comp3095.comp3095rockstars.model.RegistrationForm;
 import ca.gbc.comp3095.comp3095rockstars.model.User;
 import ca.gbc.comp3095.comp3095rockstars.repository.UserRepository;
+import ca.gbc.comp3095.comp3095rockstars.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -24,48 +37,32 @@ public class RegistrationController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping(path= "/registration")
-    public String registration(){return "registration";}
-
-    @PostMapping(path = "/registration")
-    public String submitRegistration(RegistrationForm registrationForm){
-        //check whether the form data is coming or not
-        User user = null;
-        if(null != registrationForm){
-            user = new User(registrationForm.getFirstName(), registrationForm.getLastName(),
-                    registrationForm.getEmail(), passwordEncoder.encode(registrationForm.getPassword()), registrationForm.getRole());
-        }
-        userRepository.save(user);
-        return "index";
-    }
-/*
     @Autowired
     private UserService userService;
 
-    @ModelAttribute("user")
-    public UserRegistrationDto userRegistrationDto() {
-        return new UserRegistrationDto();
+    @ModelAttribute("registrationForm")
+    public RegistrationForm registrationForm() {
+        return new RegistrationForm();
     }
 
-    @GetMapping
-    public String showRegistrationForm(Model model) {
+    @GetMapping(path= "/registration")
+    public String registration(Model model){
         return "registration";
     }
 
-    @PostMapping
-    public String registerUserAccount(@ModelAttribute("user") @Valid UserRegistrationDto userDto,
-                                      BindingResult result) {
+    @PostMapping(path = "/registration")
+    public String submitRegistration(@ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm, BindingResult bindingResult){
 
-        User existing = userService.findByEmail(userDto.getEmail());
+        User existing = userService.findByEmail(registrationForm.getEmail());
         if (existing != null) {
-            result.rejectValue("email", null, "There is already an account registered with that email");
+            bindingResult.rejectValue("email", null, "There is already an account registered with that email.");
         }
-
-        if (result.hasErrors()) {
+        if(bindingResult.hasErrors()){
             return "registration";
         }
-
-        userService.save(userDto);
-        return "redirect:/registration?success";
-    }*/
+        else {
+            userService.save(registrationForm);
+            return "index";
+        }
+    }
 }
