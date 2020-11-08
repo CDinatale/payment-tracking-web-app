@@ -5,6 +5,7 @@ import ca.gbc.comp3095.comp3095rockstars.model.RegistrationForm;
 import ca.gbc.comp3095.comp3095rockstars.model.User;
 import ca.gbc.comp3095.comp3095rockstars.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class RegistrationController {
+
+    private PasswordEncoder passwordEncoder;
+
+    RegistrationController(PasswordEncoder passwordEncoder){
+        this.passwordEncoder = passwordEncoder;
+    }
 
     //autowire user repository
     @Autowired
@@ -26,7 +33,7 @@ public class RegistrationController {
         User user = null;
         if(null != registrationForm){
             user = new User(registrationForm.getFirstName(), registrationForm.getLastName(),
-                    registrationForm.getEmail(), registrationForm.getPassword(), registrationForm.getRole());
+                    registrationForm.getEmail(), passwordEncoder.encode(registrationForm.getPassword()), registrationForm.getRole());
         }
         userRepository.save(user);
         return "index";
