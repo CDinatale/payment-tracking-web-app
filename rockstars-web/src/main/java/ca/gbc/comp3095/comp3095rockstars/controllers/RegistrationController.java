@@ -21,11 +21,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 
 
 @Controller
 public class RegistrationController {
+
+
+    public RegistrationController() {
+        super();
+    }
 
     private PasswordEncoder passwordEncoder;
 
@@ -36,6 +43,9 @@ public class RegistrationController {
     //autowire user repository
     @Autowired
     private UserRepository userRepository;
+
+    /*@Autowired
+    private CaptchaService captchaService;*/
 
     @Autowired
     private UserService userService;
@@ -51,7 +61,10 @@ public class RegistrationController {
     }
 
     @PostMapping(path = "/registration")
-    public String submitRegistration(@ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm, BindingResult bindingResult){
+    public String submitRegistration(@ModelAttribute("registrationForm") @Valid RegistrationForm registrationForm, BindingResult bindingResult, HttpServletRequest request){
+        /*String response = request.getParameter("g-recaptcha-response");
+        captchaService.processResponse(response);*/
+
 
         User existing = userService.findByEmail(registrationForm.getEmail());
         if (existing != null) {

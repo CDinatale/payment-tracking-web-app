@@ -17,34 +17,56 @@
                     class="icon-bar"></span> <span class="icon-bar"></span> <span
                     class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" th:href="@{/}">Login Page</a>
+            <a class="navbar-brand" href="#" th:href="@{/}">Login</a>
+            <a sec:authorize="isAuthenticated()" class="navbar-brand" href="#" th:href="@{~/users/dashboard}">Users Dashboard</a>
             <a class="navbar-brand" href="#" th:href="@{/users/tab1.html}">Tab1</a>
             <a class="navbar-brand" href="#" th:href="@{/users/tab2.html}">Tab2</a>
             <a class="navbar-brand" href="#" th:href="@{/users/tab3.html}">Tab3</a>
             <a class="navbar-brand" href="#" th:href="@{/users/tab4.html}">Tab4</a>
-            <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/logout}">
-                <button sec:authorize="isAuthenticated()" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
-                <button sec:authorize="isAnonymous()" th:href="@{~/login}" class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login</button>
-            </form>
+            <ul class="nav navbar-nav">
+                <li>
+                    <div class="float-right">
+                        <form class="form-inline" method="post" th:action="@{/logout}">
+                            <button sec:authorize="isAuthenticated()" class="btn btn-danger" type="submit">Logout <span class="sr-only">(current)</span></button>
+                        </form>
+                    </div>
+
+                </li>
+            </ul>
         </div>
     </div>
 </nav>
 
 <br>
 <br>
-<br><br><br>
+<br>
+<br>
+<br>
 
 <div class="container">
-
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <h1>User Dashboard Page</h1>
-        </div>
+    <div class="jumbotron">
+        <h1>Dashboard Page for Users</h1>
+        <p>Future Enhancements will be added</p>
     </div>
-
-
 </div>
 
+<div class="container">
+    <div class="jumbotron">
+        <h2>Enhancement #1</h2>
+    </div>
+</div>
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>Enhancement #2</h2>
+    </div>
+</div>
+
+<div class="container">
+    <div class="jumbotron">
+        <h2>Enhancement #3</h2>
+    </div>
+</div>
 <script type="text/javascript"
         th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
 <script type="text/javascript"

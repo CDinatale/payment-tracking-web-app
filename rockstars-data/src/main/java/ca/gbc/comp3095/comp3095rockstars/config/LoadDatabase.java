@@ -1,7 +1,7 @@
 /** Project: < Comp3095 Rockstars Project >
         * Assignment: < assignment 2 >
         * Author(s): < Nikola Vojinovic, Corradina Dinatale, Noah Huboux, Alex Balez>
-        * Student Number: < 101181089, 100645103, 101117858,>
+        * Student Number: < 101181089, 100645103, 101117858, 101219847>
         * Date: 11/08/2020
         * Description: <Loads the database and inputs the first two Users into the database>*/
 
@@ -32,7 +32,7 @@ public class LoadDatabase implements CommandLineRunner {
         this.userRepository.deleteAll();
 
         // Crete users
-        User bilbo = new User("Bilbo", "Baggins", "30 Stadium Rd","admin@isp.net", passwordEncoder.encode("P@assword1"), "ADMIN");
+        User bilbo = new User("Bilbo", "Baggins", "30 Stadium Rd","admin@isp.net", passwordEncoder.encode("P@ssword1"), "ADMIN");
         User admin = new User("Frodo", "Baggins", "30 Stadium Rd","frodo.baggins@gmail.com", passwordEncoder.encode("P@ssword2"), "USER");
 
         List<User> users = Arrays.asList(bilbo,admin);

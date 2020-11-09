@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<!--<link rel="stylesheet" type="text/css"
-      th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />-->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<title>Login</title>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
-
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed"
                     data-toggle="collapse" data-target="#navbar" aria-expanded="false"
                     aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span> <span
-                    class="icon-bar"></span> <span class="icon-bar"></span> <span
-                    class="icon-bar"></span>
+                <span class="sr-only">Toggle navigation</span>
             </button>
-            <a class="navbar-brand" href="#" th:href="@{/}">Login Page</a>
-            <a sec:authorize="isAuthenticated()" class="navbar-brand" href="#" th:href="@{~/users/index}">Users</a>
-            <a class="navbar-brand" sec:authorize="hasRole('ROLE_ADMIN')" href="#" th:href="@{~/admin/index}">Admin</a>
-            <form class="form-inline my-2 my-lg-0" method="post" th:action="@{/logout}">
-                <button sec:authorize="isAuthenticated()" class="btn btn-outline-danger my-2 my-sm-0 btn-sm" type="submit">Logout</button>
-                <button sec:authorize="isAnonymous()" th:href="@{~/login}" class="btn btn-outline-info my-2 my-sm-0 btn-sm" type="submit">Login</button>
-            </form>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a class="navbar-brand" href="#" th:href="@{/}">Login</a>
+                </li>
+
+                <li>
+                    <a class="navbar-brand" href="#" th:href="@{/registration}">Registration</a>
+                </li>
+
+                <li>
+                    <a sec:authorize="isAuthenticated()" class="navbar-brand" href="#" th:href="@{~/users/dashboard}">Users DashBoard</a>
+                </li>
+
+                <li>
+                    <a class="navbar-brand" sec:authorize="hasRole('ROLE_ADMIN')" href="#" th:href="@{~/admin/dashboard}">Admin DashBoard</a>
+                </li>
+
+            </ul>
+
+
+                <ul class="nav navbar-nav">
+                    <li>
+                        <div class="float-right">
+                            <form class="form-inline" method="post" th:action="@{/logout}">
+                                <button sec:authorize="isAuthenticated()" class="btn btn-danger" type="submit">Logout <span class="sr-only">(current)</span></button>
+                            </form>
+                        </div>
+
+                    </li>
+                </ul>
+
         </div>
     </div>
 </nav>
@@ -44,6 +64,9 @@
                     <div class="alert alert-danger">Invalid username or
                         password.</div>
                 </div>
+                <div th:if="${param.success}">
+                    <div class="alert ">Successfully Logged In .</div>
+                </div>
                 <div th:if="${param.logout}">
                     <div class="alert alert-info">You have been logged out.</div>
                 </div>
@@ -58,6 +81,14 @@
                                                                    id="password" name="password" class="form-control"
                                                                    placeholder="Password" th:required="required"/>
                 </div>
+                <div class="form-group">
+                    <div class="g-recaptcha col-sm-5"
+                         th:attr="data-sitekey=${@captchaSettings.getSite()}">
+                    </div>
+                    <span id="captchaError" class="alert alert-danger col-sm-4"
+                          style="display:none"></span>
+                </div>
+
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">

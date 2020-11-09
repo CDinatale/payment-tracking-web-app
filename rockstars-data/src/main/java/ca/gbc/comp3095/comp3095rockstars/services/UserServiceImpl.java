@@ -34,6 +34,7 @@ public class UserServiceImpl implements UserService{
     }
 
 
+
     public User save(RegistrationForm registrationInfo) {
         User user = new User();
         user.setFirstName(registrationInfo.getFirstName());
