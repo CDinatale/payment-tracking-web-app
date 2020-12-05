@@ -18,11 +18,11 @@
                     class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#" th:href="@{/}">Login</a>
-            <a sec:authorize="isAuthenticated()" class="navbar-brand" href="#" th:href="@{~/users/dashboard}">Users DashBoard</a>
-            <a class="navbar-brand" href="#" th:href="@{/users/tab1.html}">Tab1</a>
-            <a class="navbar-brand" href="#" th:href="@{/users/tab2.html}">Tab2</a>
-            <a class="navbar-brand" href="#" th:href="@{/users/tab3.html}">Tab3</a>
-            <a class="navbar-brand" href="#" th:href="@{/users/tab4.html}">Tab4</a>
+            <a class="navbar-brand" sec:authorize="hasRole('ROLE_ADMIN')" href="#" th:href="@{~/admin/dashboard}">Admin DashBoard</a>
+            <a class="navbar-brand" href="#" th:href="@{/admin/myProfile.html}">My Profile</a>
+            <a class="navbar-brand" href="#" th:href="@{/admin/userListing.html}">User Listing</a>
+            <a class="navbar-brand" href="#" th:href="@{/admin/inbox.html}">Inbox</a>
+            <a class="navbar-brand" href="#" th:href="@{/admin/support.html}">Support</a>
             <ul class="nav navbar-nav">
                 <li>
                     <div class="float-right">
@@ -30,7 +30,11 @@
                             <button sec:authorize="isAuthenticated()" class="btn btn-danger" type="submit">Logout <span class="sr-only">(current)</span></button>
                         </form>
                     </div>
-
+                </li>
+                <li>
+                    <div class="float-right">
+                        <p class="navbar-brand text-success"> Welcome! <span th:text="${#authentication.getName()}"></span></p>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -46,7 +50,7 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1>UNDER CONSTRUCTION TAB 4 FOR USERS</h1>
+            <h1>UNDER CONSTRUCTION TAB 2 FOR ADMIN</h1>
         </div>
     </div>
 

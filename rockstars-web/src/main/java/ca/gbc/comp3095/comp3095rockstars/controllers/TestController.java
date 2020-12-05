@@ -1,7 +1,7 @@
 /** Project: < Comp3095 Rockstars Project >
- * Assignment: < assignment 2 >
+ * Assignment: < assignment 3 >
  * Author(s): < Nikola Vojinovic, Corradina Dinatale, Noah Huboux, Alex Balez>
- * Student Number: < 101181089, 100645103, 101117858, >
+ * Student Number: < 101181089, 100645103, 101117858, 101219847>
  * Date: 11/08/2020
  * Description: <Test Controller that is a rest controller that will print out the contents of the database for viewing access>*/
 

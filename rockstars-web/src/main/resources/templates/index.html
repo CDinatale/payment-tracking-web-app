@@ -4,6 +4,7 @@
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -34,14 +35,20 @@
             </ul>
 
 
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav float-right">
                     <li>
-                        <div class="float-right">
+                        <div>
                             <form class="form-inline" method="post" th:action="@{/logout}">
                                 <button sec:authorize="isAuthenticated()" class="btn btn-danger" type="submit">Logout <span class="sr-only">(current)</span></button>
                             </form>
                         </div>
 
+                    </li>
+
+                    <li>
+                        <div>
+                            <p sec:authorize="isAuthenticated()" class="navbar-brand text-success">Welcome! <span sec:authorize="isAuthenticated()" th:text="${#authentication.getName()}"></span></p>
+                        </div>
                     </li>
                 </ul>
 
@@ -112,6 +119,5 @@
         th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
 <script type="text/javascript"
         th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-
 </body>
 </html>

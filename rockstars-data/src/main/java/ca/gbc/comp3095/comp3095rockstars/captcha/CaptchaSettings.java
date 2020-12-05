@@ -1,3 +1,10 @@
+/** Project: < Comp3095 Rockstars Project >
+ * Assignment: < assignment 3 >
+ * Author(s): < Nikola Vojinovic, Corradina Dinatale, Noah Huboux, Alex Balez>
+ * Student Number: < 101181089, 100645103, 101117858, 101219847>
+ * Date: 11/08/2020
+ * Description: <Configures the captcha key>*/
+
 package ca.gbc.comp3095.comp3095rockstars.captcha;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;

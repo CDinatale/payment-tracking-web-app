@@ -1,7 +1,7 @@
 /** Project: < Comp3095 Rockstars Project >
- * Assignment: < assignment 2 >
+ * Assignment: < assignment 3 >
  * Author(s): < Nikola Vojinovic, Corradina Dinatale, Noah Huboux, Alex Balez>
- * Student Number: < 101181089, 100645103, 101117858, >
+ * Student Number: < 101181089, 100645103, 101117858, 101219847>
  * Date: 11/08/2020
  * Description: <Admin controller that sends to admin dashboard and tabs for admin>*/
 
@@ -35,23 +35,23 @@ public class AdminController {
         return "admin/dashboard";
     }
 
-    @GetMapping({"tab1", "tab1.html"})
+    @GetMapping({"myProfile", "myProfile.html"})
     public String tab1(){
-        return "admin/tab1";
+        return "admin/myProfile";
     }
 
-    @GetMapping({"tab2", "tab2.html"})
+    @GetMapping({"userListing", "userListing.html"})
     public String tab2(){
-        return "admin/tab2";
+        return "admin/userListing";
     }
 
-    @GetMapping({"tab3", "tab3.html"})
+    @GetMapping({"inbox", "inbox.html"})
     public String tab3(){
-        return "admin/tab3";
+        return "admin/inbox";
     }
 
-    @GetMapping({"tab4", "tab4.html"})
+    @GetMapping({"support", "support.html"})
     public String tab4(){
-        return "admin/tab4";
+        return "admin/support";
     }
 }

@@ -1,7 +1,7 @@
 /** Project: < Comp3095 Rockstars Project >
- * Assignment: < assignment 2 >
+ * Assignment: < assignment 3 >
  * Author(s): < Nikola Vojinovic, Corradina Dinatale, Noah Huboux, Alex Balez>
- * Student Number: < 101181089, 100645103, 101117858, >
+ * Student Number: < 101181089, 100645103, 101117858, 101219847>
  * Date: 11/08/2020
  * Description: <Users Controller for dashboard and tabs for users (admin role users can also ping these pages)>*/
 
@@ -15,27 +15,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("users")
 public class UsersController {
     @GetMapping({"dashboard", "index"})
-    public String index(){
+    public String dashboard(){
         return "users/dashboard";
     }
 
-    @GetMapping({"tab1", "tab1.html"})
-    public String tab1(){
-        return "users/tab1";
+    @GetMapping({"myProfile", "myProfile.html"})
+    public String myProfile(){
+        return "users/myProfile";
     }
 
-    @GetMapping({"tab2", "tab2.html"})
-    public String tab2(){
-        return "users/tab2";
+    @GetMapping({"creditProfile", "creditProfile.html"})
+    public String creditProfile(){
+        return "users/creditProfile";
     }
 
-    @GetMapping({"tab3", "tab3.html"})
-    public String tab3(){
-        return "users/tab3";
+    @GetMapping({"inbox", "inbox.html"})
+    public String inbox(){
+        return "users/inbox";
     }
 
-    @GetMapping({"tab4", "tab4.html"})
-    public String tab4(){
-        return "users/tab4";
+    @GetMapping({"support", "support.html"})
+    public String support(){
+        return "users/support";
     }
 }
