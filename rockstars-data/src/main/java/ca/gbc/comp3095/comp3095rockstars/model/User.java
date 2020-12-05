@@ -19,7 +19,7 @@ import java.util.List;
 @Entity
 public class User extends BaseEntity{
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="first_name")
     private String firstName;
 
     @Column(nullable = false)

@@ -6,17 +6,12 @@
  * Description: <The user Service implementation that saves the user to the user repository >*/
 
 package ca.gbc.comp3095.comp3095rockstars.services;
-
 import ca.gbc.comp3095.comp3095rockstars.model.RegistrationForm;
-import ca.gbc.comp3095.comp3095rockstars.model.Role;
 import ca.gbc.comp3095.comp3095rockstars.model.User;
 import ca.gbc.comp3095.comp3095rockstars.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
 import java.util.Set;
 
 @Service

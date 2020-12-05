@@ -5,14 +5,10 @@
  * Date: 11/08/2020
  * Description: <Captcha Service implementation of abstract for captcha validation>*/
 
-package ca.gbc.comp3095.comp3095rockstars.services;
-import java.net.URI;
+package ca.gbc.comp3095.comp3095rockstars.services.captchaServices;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
-
 
 
 public class CaptchaService extends AbstractCaptchaService {

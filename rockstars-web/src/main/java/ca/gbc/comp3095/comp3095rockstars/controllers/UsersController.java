@@ -7,6 +7,8 @@
 
 package ca.gbc.comp3095.comp3095rockstars.controllers;
 
+import ca.gbc.comp3095.comp3095rockstars.services.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("users")
 public class UsersController {
+
+    @Autowired
+    private UserServiceImpl userService;
+
+
     @GetMapping({"dashboard", "index"})
     public String dashboard(){
         return "users/dashboard";

@@ -3,16 +3,11 @@
  * Author(s): < Nikola Vojinovic, Corradina Dinatale, Noah Huboux, Alex Balez>
  * Student Number: < 101181089, 100645103, 101117858, 101219847>
  * Date: 11/08/2020
- * Description: <Captcha interface that it used to create a method for processing response>*/
+ * Description: <UserService that implements the crud service and adds additional methods to save to database and findByEmail>*/
 
 package ca.gbc.comp3095.comp3095rockstars.services;
+import ca.gbc.comp3095.comp3095rockstars.model.Profile;
 
+public interface ProfileService extends CrudService<Profile, Long>{
 
-public interface ICaptchaService {
-
-    default void processResponse(final String response) {}
-
-    String getReCaptchaSite();
-
-    String getReCaptchaSecret();
 }

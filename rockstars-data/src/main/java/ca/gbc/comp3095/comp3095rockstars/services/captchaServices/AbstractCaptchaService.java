@@ -5,7 +5,7 @@
  * Date: 11/08/2020
  * Description: <Abstract Captcha Service for captcha validation that implements the captcha service interface>*/
 
-package ca.gbc.comp3095.comp3095rockstars.services;
+package ca.gbc.comp3095.comp3095rockstars.services.captchaServices;
 
 import java.util.regex.Pattern;
 
@@ -22,7 +22,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-public abstract class AbstractCaptchaService implements ICaptchaService{
+public abstract class AbstractCaptchaService implements ICaptchaService {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(AbstractCaptchaService.class);
 

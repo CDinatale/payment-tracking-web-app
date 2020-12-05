@@ -5,7 +5,7 @@
  * Date: 11/08/2020
  * Description: <A captcha service that attempts to cache the captcha>*/
 
-package ca.gbc.comp3095.comp3095rockstars.services;
+package ca.gbc.comp3095.comp3095rockstars.services.captchaServices;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;

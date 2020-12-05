@@ -5,7 +5,7 @@
  * Date: 11/08/2020
  * Description: <A Google response class that ties in with the captcha>*/
 
-package ca.gbc.comp3095.comp3095rockstars.services;
+package ca.gbc.comp3095.comp3095rockstars.services.captchaServices;
 import com.fasterxml.jackson.annotation.*;
 
 import java.util.Arrays;

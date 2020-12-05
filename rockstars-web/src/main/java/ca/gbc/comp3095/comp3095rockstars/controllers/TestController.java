@@ -7,8 +7,8 @@
 
 package ca.gbc.comp3095.comp3095rockstars.controllers;
 
-import ca.gbc.comp3095.comp3095rockstars.model.User;
-import ca.gbc.comp3095.comp3095rockstars.repository.UserRepository;
+import ca.gbc.comp3095.comp3095rockstars.model.*;
+import ca.gbc.comp3095.comp3095rockstars.repository.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,14 +19,39 @@ import java.util.List;
 @RestController
 @RequestMapping("api/public")
 public class TestController {
-    UserRepository userRepository;
 
-    public TestController(UserRepository userRepository){
+    UserRepository userRepository;
+    CreditProfileRepository creditProfileRepository;
+    ProfileRepository profileRepository;
+    MessageRepository messageRepository;
+
+    public TestController(UserRepository userRepository,
+                          MessageRepository messageRepository, ProfileRepository profileRepository,
+                          CreditProfileRepository creditProfileRepository){
+
         this.userRepository = userRepository;
+        this.messageRepository = messageRepository;
+        this.profileRepository = profileRepository;
+        this.creditProfileRepository = creditProfileRepository;
     }
 
     @GetMapping("users")
     public List<User> allUsers(){
         return this.userRepository.findAll();
+    }
+
+    @GetMapping("messages")
+    public List<Message> allMessages(){
+        return this.messageRepository.findAll();
+    }
+
+    @GetMapping("profiles")
+    public List<Profile> allProfiles(){
+        return this.profileRepository.findAll();
+    }
+
+    @GetMapping("creditProfiles")
+    public List<CreditProfile> allCreditProfiles(){
+        return this.creditProfileRepository.findAll();
     }
 }
