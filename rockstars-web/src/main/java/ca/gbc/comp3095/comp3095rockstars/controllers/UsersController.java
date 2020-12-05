@@ -7,6 +7,8 @@
 
 package ca.gbc.comp3095.comp3095rockstars.controllers;
 
+import ca.gbc.comp3095.comp3095rockstars.model.User;
+import ca.gbc.comp3095.comp3095rockstars.services.UserService;
 import ca.gbc.comp3095.comp3095rockstars.model.Profile;
 import ca.gbc.comp3095.comp3095rockstars.model.User;
 import ca.gbc.comp3095.comp3095rockstars.security.UserPrincipal;
