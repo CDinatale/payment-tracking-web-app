@@ -14,6 +14,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 
 @Entity
@@ -113,6 +114,8 @@ public class User extends BaseEntity{
     public void setAddress(String address) {
         this.address = address;
     }
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userForeignKey")
+    public Set<Profile> profiles = new
 
     public List<String> getRoleList(){
         if(this.roles.length() > 0){

@@ -15,7 +15,7 @@ public class Profile extends BaseEntity{
 
     public Profile(){}
 
-    public Profile(String city, String country, String postalCode, String shippingAddress, String billingAddress, String shippingAddressDefault, String billingAddressDefault, LocalDate dateCreated, String userForeignKey) {
+    public Profile(String city, String country, String postalCode, String shippingAddress, String billingAddress, String shippingAddressDefault, String billingAddressDefault, LocalDate dateCreated, User userForeignKey) {
         this.city = city;
         this.country = country;
         this.postalCode = postalCode;
@@ -136,7 +136,9 @@ public class Profile extends BaseEntity{
     private long profile_id;
 
     @Column(nullable = false)
-    private String userForeignKey;
+    @ManyToOne
+    @JoinColumn(name = "userForeignKey")
+    private User userForeignKey;
 
 
 }
