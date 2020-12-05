@@ -1,9 +1,11 @@
 package ca.gbc.comp3095.comp3095rockstars.services;
 
 import ca.gbc.comp3095.comp3095rockstars.model.CreditProfile;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class CreditProfileServiceImpl implements CreditProfileService{
     @Override
     public Set<CreditProfile> findAll() {

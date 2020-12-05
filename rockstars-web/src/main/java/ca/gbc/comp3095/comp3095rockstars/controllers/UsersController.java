@@ -7,9 +7,10 @@
 
 package ca.gbc.comp3095.comp3095rockstars.controllers;
 
-import ca.gbc.comp3095.comp3095rockstars.services.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import ca.gbc.comp3095.comp3095rockstars.model.User;
+import ca.gbc.comp3095.comp3095rockstars.services.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,12 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("users")
 public class UsersController {
 
-    @Autowired
-    private UserServiceImpl userService;
+    private final UserService userService;
+
+    public UsersController(UserService userService) {
+        this.userService = userService;
+    }
 
 
     @GetMapping({"dashboard", "index"})
-    public String dashboard(){
+    public String dashboard(Model model ){
+
+        model.addAttribute("users", userService.findAll());
         return "users/dashboard";
     }
 
