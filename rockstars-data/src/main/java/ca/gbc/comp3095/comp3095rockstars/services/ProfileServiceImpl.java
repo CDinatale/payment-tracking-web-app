@@ -1,13 +1,17 @@
 package ca.gbc.comp3095.comp3095rockstars.services;
 
 import ca.gbc.comp3095.comp3095rockstars.model.Profile;
+import ca.gbc.comp3095.comp3095rockstars.model.User;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class ProfileServiceImpl implements ProfileService{
     @Override
     public Set<Profile> findAll() {
-        return null;
+
+        Set<Profile> users = new HashSet<>(profileRepository.findAll());
+        return users;
     }
 
     @Override
