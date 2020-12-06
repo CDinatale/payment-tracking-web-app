@@ -50,8 +50,28 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1>UNDER CONSTRUCTION TAB 3 FOR ADMIN</h1>
+            <h1>Admin Inbox</h1>
         </div>
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th>Ticket #</th>
+                <th>Date Added</th>
+                <th>Subject</th>
+                <th>Action Reply</th>
+                <th>Action Remove</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="message : ${messages}">
+                <td th:text="${message.id}"></td>
+                <td th:text="${message.dateCreated}"></td>
+                <td th:text="${message.messageSubject}"></td>
+                <td><a th:href="@{/admin/remove/{id}(id=${message.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2">Remove</i></a></td>
+                <td><a th:href="@{/admin/reply/{id}(id=${message.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2">Reply</i></a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
 

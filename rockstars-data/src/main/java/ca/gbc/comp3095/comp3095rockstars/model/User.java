@@ -9,6 +9,7 @@ package ca.gbc.comp3095.comp3095rockstars.model;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import javax.persistence.*;
 import java.util.*;
@@ -38,6 +39,53 @@ public class User extends BaseEntity{
 
     @Column
     private String roles;
+
+    @Column
+    private Date dateOfBirth;
+
+    @Column
+    private String city;
+
+    @Column
+    private String country;
+
+    @Column
+    private String postalCode;
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    private Set<Message> messages = new HashSet<>();
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
     public User(String firstName, String lastName, String address, String email, String password, String roles) {
         this.firstName = firstName;
@@ -102,7 +150,12 @@ public class User extends BaseEntity{
     }
 
     public void setRoles() {
+
         this.roles = "USER";
+    }
+
+    public void setRolesAdmin() {
+        this.roles = "ADMIN";
     }
 
     public String getAddress() {

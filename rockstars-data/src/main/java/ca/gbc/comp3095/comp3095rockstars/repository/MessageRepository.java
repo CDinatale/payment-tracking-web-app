@@ -9,8 +9,13 @@ package ca.gbc.comp3095.comp3095rockstars.repository;
 
 import ca.gbc.comp3095.comp3095rockstars.model.Message;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import java.util.Set;
 
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
+
+
 }

@@ -6,15 +6,15 @@
  * Description: <Admin controller that sends to admin dashboard and tabs for admin>*/
 
 package ca.gbc.comp3095.comp3095rockstars.controllers;
+import ca.gbc.comp3095.comp3095rockstars.model.Message;
+import ca.gbc.comp3095.comp3095rockstars.model.Profile;
 import ca.gbc.comp3095.comp3095rockstars.model.User;
-import ca.gbc.comp3095.comp3095rockstars.repository.UserRepository;
+import ca.gbc.comp3095.comp3095rockstars.services.MessageService;
 import ca.gbc.comp3095.comp3095rockstars.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -22,11 +22,14 @@ import javax.validation.Valid;
 @RequestMapping("admin")
 public class AdminController {
 
-    @Autowired
-    private UserRepository userRepository;
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+    private final MessageService messageService;
+
+    public AdminController(UserService userService, MessageService messageService) {
+        this.userService = userService;
+        this.messageService = messageService;
+    }
 
     @GetMapping({"dashboard", "index"})
     public String index(@ModelAttribute("registrationForm") @Valid User user, Model model){
@@ -36,22 +39,54 @@ public class AdminController {
     }
 
     @GetMapping({"myProfile", "myProfile.html"})
-    public String tab1(){
+    public String myProfile(){
         return "admin/myProfile";
     }
 
     @GetMapping({"userListing", "userListing.html"})
-    public String tab2(){
+    public String userListing(){
         return "admin/userListing";
     }
 
     @GetMapping({"inbox", "inbox.html"})
-    public String tab3(){
+    public String inbox(Model model){
+        model.addAttribute("messages", messageService.findAll());
+        return "admin/inbox";
+    }
+
+    @GetMapping("delete/{id}")
+    public String deleteUser(@PathVariable("id") long id) {
+        userService.deleteById(id);
+        return "admin/dashboard";
+    }
+
+    @GetMapping("remove/{id}")
+    public String deleteMessage(@PathVariable("id") long id) {
+        messageService.deleteById(id);
         return "admin/inbox";
     }
 
     @GetMapping({"support", "support.html"})
-    public String tab4(){
+    public String support(Model model, User userForm){
+
+        model.addAttribute("users", userService.findAll());
+        model.addAttribute("userForm", userForm);
         return "admin/support";
     }
+
+    @PostMapping("addAdmin")
+    public String addMessage(@Valid User userForm, BindingResult result, Model model){
+
+        User existing = userService.findByEmail(userForm.getEmail());
+        if (existing != null) {
+            result.rejectValue("email", "There is already an account registered with that email.");
+            return "admin/support";
+        }
+        else {
+            userForm.setRolesAdmin();
+            userService.saveAdmin(userForm);
+            return "redirect:dashboard";
+        }
+    }
+
 }

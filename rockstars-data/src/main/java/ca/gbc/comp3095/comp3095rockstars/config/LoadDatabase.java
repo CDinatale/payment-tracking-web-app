@@ -7,6 +7,7 @@
 
 
 package ca.gbc.comp3095.comp3095rockstars.config;
+import ca.gbc.comp3095.comp3095rockstars.model.Message;
 import ca.gbc.comp3095.comp3095rockstars.model.Profile;
 import ca.gbc.comp3095.comp3095rockstars.repository.ProfileRepository;
 import ca.gbc.comp3095.comp3095rockstars.repository.MessageRepository;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -25,12 +27,15 @@ public class LoadDatabase implements CommandLineRunner {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final MessageRepository messageRepository;
+    private final Date date;
     private final ProfileRepository profileRepository;
 
     public LoadDatabase(UserRepository userRepository , PasswordEncoder passwordEncoder,  MessageRepository messageRepository, ProfileRepository profileRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.messageRepository = messageRepository;
+
+        this.date = new Date(2020);
         this.profileRepository = profileRepository;
     }
 
@@ -45,6 +50,14 @@ public class LoadDatabase implements CommandLineRunner {
         User bilbo = new User("Bilbo", "Baggins", "30 Stadium Rd","admin@isp.net", passwordEncoder.encode("P@ssword1"), "ADMIN");
         User admin = new User("Frodo", "Baggins", "30 Stadium Rd","frodo.baggins@gmail.com", passwordEncoder.encode("P@ssword2"), "USER");
         User a = new User("a", "aa", "30 Stadium Rd","a@a.aa", passwordEncoder.encode("a"), "USER");
+        User admin = new User("Bilbo", "Baggins", "30 Stadium Rd","admin@isp.net", passwordEncoder.encode("P@ssword1"), "ADMIN");
+        User user = new User("Frodo", "Baggins", "30 Stadium Rd","frodo.baggins@gmail.com", passwordEncoder.encode("P@ssword2"), "USER");
+        //Message message1 = new Message("frodo", "bilbo", "unread", "I cannot find my password", "Password Problem", date);
+        //Message message2 = new Message("bilbo", "uncle", "read", "I will help you find your password", "Password Problem Fixed", date);
+        //message1.setUser(user);
+        //message2.setUser(admin);
+        List<User> users = Arrays.asList(admin,user);
+        //List <Message> messages = Arrays.asList(message1, message2);
 
         Profile profile1 = new Profile("Toronto", "Ca","n2n3n4", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), bilbo);
         Profile profile2 = new Profile("Toronto2", "ca","222222", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), admin);
@@ -60,5 +73,6 @@ public class LoadDatabase implements CommandLineRunner {
         this.userRepository.saveAll(users);
         this.profileRepository.saveAll(profiles);
 
+        //this.messageRepository.saveAll(messages);
     }
 }
