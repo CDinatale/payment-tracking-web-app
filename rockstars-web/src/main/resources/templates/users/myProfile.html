@@ -53,24 +53,13 @@
 
 </div>
 <div class="container d-flex">
-<div class="d-flex">
-    <div class="d-flex flex-row">
-        <div class="p-2 bg-danger">col1
-            <div class="d-flex flex-row">
-                <div class="p-2 bg-danger">col1</div>
-                <div class="p-2 bg-primary">col2</div>
-            </div></div>
-        <div class="p-2 bg-primary">col2</div>
-    </div>
-    <div class="d-flex flex-row">
-        <div class="p-2 bg-danger">col1</div>
-        <div class="p-2 bg-primary">col2</div>
-    </div>
-    <div class="d-flex flex-row">
-        <div class="p-2 bg-danger">col1</div>
-        <div class="p-2 bg-primary">col2</div>
-    </div>
-</div>
+    <table>
+        <tbody>
+            <tr th:each="profile : ${profiles}">
+                <td th:text="${profiles.}"
+            </tr>
+        </tbody>
+    </table>
 </div>
 <div class="container">
     <div class="jumbotron">
