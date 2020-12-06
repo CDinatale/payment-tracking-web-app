@@ -5,10 +5,11 @@ import ca.gbc.comp3095.comp3095rockstars.model.User;
 import ca.gbc.comp3095.comp3095rockstars.repository.ProfileRepository;
 import ca.gbc.comp3095.comp3095rockstars.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.Set;
-
+@Service
 public class ProfileServiceImpl implements ProfileService{
 
 

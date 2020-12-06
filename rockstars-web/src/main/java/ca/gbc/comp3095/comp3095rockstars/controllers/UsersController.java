@@ -21,6 +21,7 @@ public class UsersController {
 
     @Autowired
     private UserServiceImpl userService;
+    @Autowired
     private ProfileServiceImpl profileService;
 
     @GetMapping({"dashboard", "index"})

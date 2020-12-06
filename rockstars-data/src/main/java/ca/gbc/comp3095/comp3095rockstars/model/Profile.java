@@ -135,6 +135,7 @@ public class Profile extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long profile_id;
 
+    @ManyToOne
     @JoinColumn(name = "uKey")
     private User userForeignKey;
 
