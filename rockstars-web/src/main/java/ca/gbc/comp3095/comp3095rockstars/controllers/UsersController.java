@@ -8,8 +8,8 @@
 package ca.gbc.comp3095.comp3095rockstars.controllers;
 
 import ca.gbc.comp3095.comp3095rockstars.model.Message;
-import ca.gbc.comp3095.comp3095rockstars.model.RegistrationForm;
 import ca.gbc.comp3095.comp3095rockstars.model.User;
+import ca.gbc.comp3095.comp3095rockstars.security.UserPrincipal;
 import ca.gbc.comp3095.comp3095rockstars.services.MessageService;
 import ca.gbc.comp3095.comp3095rockstars.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -17,8 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 @RequestMapping("users")
@@ -56,6 +57,7 @@ public class UsersController {
         return "users/creditProfile";
     }
 
+    //for inbox.html in templates/users folder
     @GetMapping({"inbox", "inbox.html"})
     public String inbox(Model model){
         model.addAttribute("messages", messageService.findAll());
@@ -69,6 +71,7 @@ public class UsersController {
         return "users/inbox";
     }
 
+    //for readMessage.html in templates/users folder
     @GetMapping(path = "read/{id}")
     public String readMessage(@PathVariable("id") long id, Model model) {
         Message message = messageService.findById(id);
@@ -76,17 +79,24 @@ public class UsersController {
         return "users/readMessage";
     }
 
+    //for support.html in templates/users folder
     @GetMapping({"support", "support.html"})
     public String support(Message message){
         return "users/support";
     }
 
     @PostMapping("add")
-    public String addMessage(@Valid Message messageForm, BindingResult result, Model model){
+    public String addMessage(@Valid Message messageForm, BindingResult result, Model model, UserPrincipal userPrincipal){
         if (result.hasErrors()) {
             return "users/support";
         }
-
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        formatter.format(date);
+        messageForm.setDateCreated(date);
+        /*String email = userPrincipal.getUsername();
+        User user = userService.findByEmail(email);
+        messageForm.setUser(user);*/
         messageService.save(messageForm);
         return "redirect:dashboard";
     }
