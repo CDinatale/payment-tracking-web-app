@@ -44,7 +44,7 @@ public class UsersController {
 
     @GetMapping({"myProfile", "myProfile.html"})
     public String myProfile(Model model){
-
+        model.addAttribute("users", userService.findAll());
         model.addAttribute("profiles", profileService.findAll());
         return "users/myProfile";
     }

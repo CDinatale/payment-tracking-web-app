@@ -51,7 +51,7 @@
 <div class="container">
 
     <h1>User Profiles</h1>
-    <span th:text="${#authentication.getDetails()}"></span>
+    <span th:text="${#authentication.getName()}"></span>
 </div>
 <div class="container d-flex">
     <table>
@@ -67,7 +67,8 @@
             <th>Date Created</th>
             <th>UserFK</th>
         </tr>
-        <tr th:each="profile : ${profiles}">
+        <tr th:each="profile : ${profiles}"
+        th:if="${profile.userForeignKey.getEmail()}==${#authentication.getName()}">
             <td th:text="${profile.city}"></td>
             <td th:text="${profile.country}"></td>
             <td th:text="${profile.postalCode}"></td>
@@ -76,7 +77,7 @@
             <td th:text="${profile.shippingAddressDefault}"></td>
             <td th:text="${profile.billingAddressDefault}"></td>
             <td th:text="${profile.dateCreated}"></td>
-            <td th:text="${profile.userForeignKey}"></td>
+            <td th:text="${profile.userForeignKey.getEmail()}"></td>
         </tr>
 
         </tbody>
