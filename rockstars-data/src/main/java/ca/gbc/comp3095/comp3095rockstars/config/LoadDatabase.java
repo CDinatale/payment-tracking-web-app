@@ -51,7 +51,7 @@ public class LoadDatabase implements CommandLineRunner {
 
         // Save to db
         this.userRepository.saveAll(users);
-        //this.profileRepository.saveAll(profiles);
+        this.profileRepository.saveAll(profiles);
 
     }
 }

@@ -7,9 +7,10 @@
 
 package ca.gbc.comp3095.comp3095rockstars.controllers;
 
-import ca.gbc.comp3095.comp3095rockstars.services.ProfileServiceImpl;
-import ca.gbc.comp3095.comp3095rockstars.services.UserServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import ca.gbc.comp3095.comp3095rockstars.model.Profile;
+import ca.gbc.comp3095.comp3095rockstars.model.User;
+import ca.gbc.comp3095.comp3095rockstars.services.ProfileService;
+import ca.gbc.comp3095.comp3095rockstars.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,20 +20,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("users")
 public class UsersController {
 
-    @Autowired
-    private UserServiceImpl userService;
-    @Autowired
-    private ProfileServiceImpl profileService;
+    private final UserService userService;
+    private final ProfileService profileService;
+
+    public UsersController(UserService userService, ProfileService profileService) {
+        this.userService = userService;
+        this.profileService = profileService;
+    }
+
 
     @GetMapping({"dashboard", "index"})
     public String dashboard(Model model ){
+
         model.addAttribute("users", userService.findAll());
         return "users/dashboard";
     }
 
     @GetMapping({"myProfile", "myProfile.html"})
     public String myProfile(Model model){
-        model.addAttribute("profiles", profileService.findAll());
+
+        model.addAttribute("users", profileService.findAll());
         return "users/myProfile";
     }
 
