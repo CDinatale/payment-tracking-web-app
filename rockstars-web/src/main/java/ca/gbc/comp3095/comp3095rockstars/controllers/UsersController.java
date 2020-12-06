@@ -9,8 +9,11 @@ package ca.gbc.comp3095.comp3095rockstars.controllers;
 
 import ca.gbc.comp3095.comp3095rockstars.model.Profile;
 import ca.gbc.comp3095.comp3095rockstars.model.User;
+import ca.gbc.comp3095.comp3095rockstars.security.UserPrincipal;
+import ca.gbc.comp3095.comp3095rockstars.security.UserPrincipalDetailsService;
 import ca.gbc.comp3095.comp3095rockstars.services.ProfileService;
 import ca.gbc.comp3095.comp3095rockstars.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,10 +25,13 @@ public class UsersController {
 
     private final UserService userService;
     private final ProfileService profileService;
+    //maybe?
+    private final UserPrincipalDetailsService userPrincipal;
 
-    public UsersController(UserService userService, ProfileService profileService) {
+    public UsersController(UserService userService, ProfileService profileService, UserPrincipalDetailsService userPrincipal) {
         this.userService = userService;
         this.profileService = profileService;
+        this.userPrincipal = userPrincipal;
     }
 
 
