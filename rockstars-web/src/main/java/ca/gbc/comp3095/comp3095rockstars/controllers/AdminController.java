@@ -9,6 +9,7 @@ package ca.gbc.comp3095.comp3095rockstars.controllers;
 import ca.gbc.comp3095.comp3095rockstars.model.Message;
 import ca.gbc.comp3095.comp3095rockstars.model.Profile;
 import ca.gbc.comp3095.comp3095rockstars.model.User;
+import ca.gbc.comp3095.comp3095rockstars.security.UserPrincipal;
 import ca.gbc.comp3095.comp3095rockstars.services.MessageService;
 import ca.gbc.comp3095.comp3095rockstars.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Set;
 
 @Controller
 @RequestMapping("admin")
@@ -48,17 +53,43 @@ public class AdminController {
         return "admin/userListing";
     }
 
+    
     @GetMapping({"inbox", "inbox.html"})
     public String inbox(Model model){
-        model.addAttribute("messages", messageService.findAll());
+        Set<Message> messages = messageService.findAll();
+        Set<Message> clientMessages = new java.util.HashSet<>(Collections.emptySet());
+        for (Message message:messages) {
+            if(message.getToWho().equals("admin@isp.net")){
+                clientMessages.add(message);
+            }
+        }
+        model.addAttribute("messages", clientMessages);
         return "admin/inbox";
     }
 
-    @GetMapping("delete/{id}")
-    public String deleteUser(@PathVariable("id") long id) {
-        userService.deleteById(id);
-        return "admin/dashboard";
+    @GetMapping(path = "reply/{id}")
+    public String replyMessage(@PathVariable("id") long id, Model model) {
+        Message message = messageService.findById(id);
+        model.addAttribute("replyMessage", message);
+        return "admin/replyMessage";
     }
+
+    @PostMapping("submitReply")
+    public String submitReplyMessage(@Valid Message replyMessage, BindingResult result, Model model, UserPrincipal userPrincipal){
+        if (result.hasErrors()) {
+            return "admin/support";
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        formatter.format(date);
+        replyMessage.setDateCreated(date);
+        /*String email = userPrincipal.getUsername();
+        User user = userService.findByEmail(email);
+        replyMessage.setUser(user);*/
+        messageService.save(replyMessage);
+        return "redirect:dashboard";
+    }
+
 
     @GetMapping("remove/{id}")
     public String deleteMessage(@PathVariable("id") long id) {
@@ -72,6 +103,12 @@ public class AdminController {
         model.addAttribute("users", userService.findAll());
         model.addAttribute("userForm", userForm);
         return "admin/support";
+    }
+
+    @GetMapping("delete/{id}")
+    public String deleteUser(@PathVariable("id") long id) {
+        userService.deleteById(id);
+        return "admin/dashboard";
     }
 
     @PostMapping("addAdmin")
