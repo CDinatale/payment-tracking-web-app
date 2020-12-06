@@ -25,7 +25,7 @@ public class CreditProfile extends BaseEntity{
     @Column(nullable = false, name="card_number")
     private Long cardNumber;
 
-    @Column(nullable = false, name="default_credit_card")
+    @Column( name="default_credit_card")
     private String defaultCreditCard;
 
     @Column(nullable = false, name="date_card_created")

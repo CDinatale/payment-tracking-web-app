@@ -12,9 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -31,11 +29,22 @@ public class CreditProfileController {
 
     @Autowired
     private CreditProfileService creditProfileService;
-    private UserService userService;
 
     @ModelAttribute("creditCardForm")
     public CreditCardForm CreditCardForm() {
         return new CreditCardForm();
+    }
+
+    @GetMapping("delete/{id}")
+    public String deleteCreditProfile(@PathVariable("id") long id, Model model) {
+        creditProfileService.deleteById(id);
+        return "users/creditProfileList";
+    }
+
+    @GetMapping({"creditProfileList", "creditProfileList.html"})
+    public String creditProfileList(Model model){
+        model.addAttribute("creditProfiles", creditProfileService.findAll());
+        return "users/creditProfileList";
     }
 
     @GetMapping(path= "/creditProfile")
@@ -47,8 +56,7 @@ public class CreditProfileController {
     public String submitCreditCard(@ModelAttribute("creditCardForm") @Valid CreditCardForm creditCardForm, BindingResult bindingResult,
                                    @AuthenticationPrincipal UserPrincipal user, Model model){
 
-
-        creditCardForm.setUser(user.getUser());
+       // creditCardForm.setUser(user.getUser());
 
         CreditProfile existing = creditProfileService.findByCardNumber(creditCardForm.getCardNumber());
         if (existing != null) {
@@ -57,7 +65,7 @@ public class CreditProfileController {
         if (!bindingResult.hasErrors()) {
             creditProfileService.save(creditCardForm);
         }
-        return "users/creditProfile";
+        return "redirect:creditProfileList";
     }
 }
 
