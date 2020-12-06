@@ -53,6 +53,18 @@
 <div class="container">
     <div class="jumbotron">
         <h2>Enhancement #1</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>First Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.creditProfiles}"></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 

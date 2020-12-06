@@ -30,8 +30,4 @@ public class Message extends BaseEntity{
 
     @Column(nullable = false)
     private LocalDate dateCreated;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long message_id;
 }

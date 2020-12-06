@@ -7,13 +7,8 @@
 
 package ca.gbc.comp3095.comp3095rockstars.model;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 @Entity
@@ -22,24 +17,22 @@ public class User extends BaseEntity{
     @Column(nullable = false, name="first_name")
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="lastName")
     private String lastName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="address")
     private String address;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="email")
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="password")
     private String password;
 
-    @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
-    private long id;
-
-    @Column
     private String roles;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<CreditProfile> creditProfiles = new HashSet<>();
 
     public User(String firstName, String lastName, String address, String email, String password, String roles) {
         this.firstName = firstName;
@@ -90,14 +83,6 @@ public class User extends BaseEntity{
         this.password = password;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public long getId() {
-        return id;
-    }
-
     public String getRoles() {
         return roles;
     }
@@ -119,5 +104,13 @@ public class User extends BaseEntity{
             return Arrays.asList(this.roles.split(","));
         }
         return new ArrayList<>();
+    }
+
+    public Set<CreditProfile> getCreditProfiles() {
+        return creditProfiles;
+    }
+
+    public void setCreditProfiles(Set<CreditProfile> creditProfiles) {
+        this.creditProfiles = creditProfiles;
     }
 }

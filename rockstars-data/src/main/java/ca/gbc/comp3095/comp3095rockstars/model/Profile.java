@@ -36,10 +36,6 @@ public class Profile extends BaseEntity{
     @Column(nullable = false)
     private LocalDate dateCreated;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long profile_id;
-
     @Column(nullable = false)
     private String userForeignKey;
 
