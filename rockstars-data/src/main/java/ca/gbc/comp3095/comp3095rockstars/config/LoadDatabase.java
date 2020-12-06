@@ -36,19 +36,23 @@ public class LoadDatabase implements CommandLineRunner {
     public void run(String... args) {
         // Delete all
         this.userRepository.deleteAll();
+        this.profileRepository.deleteAll();
 
         // Crete users
+
+
         User bilbo = new User("Bilbo", "Baggins", "30 Stadium Rd","admin@isp.net", passwordEncoder.encode("P@ssword1"), "ADMIN");
         User admin = new User("Frodo", "Baggins", "30 Stadium Rd","frodo.baggins@gmail.com", passwordEncoder.encode("P@ssword2"), "USER");
-        Profile profile1 = new Profile("Toronto", "Ca","n2n3n4", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), bilbo);
-        Profile profile2 = new Profile("Toronto2", "ca","222222", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), admin);
+        //Profile profile1 = new Profile("Toronto", "Ca","n2n3n4", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), bilbo);
+        //Profile profile2 = new Profile("Toronto2", "ca","222222", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), admin);
+        User a = new User("Frodo", "Baggins", "30 Stadium Rd","a@a.aa", passwordEncoder.encode("a"), "USER");
 
-        List<User> users = Arrays.asList(bilbo,admin);
-        List<Profile> profiles = Arrays.asList(profile1, profile2);
+        List<User> users = Arrays.asList(bilbo,admin,a);
+        //List<Profile> profiles = Arrays.asList(profile2);
 
         // Save to db
         this.userRepository.saveAll(users);
-        this.profileRepository.saveAll(profiles);
+        //this.profileRepository.saveAll(profiles);
 
     }
 }

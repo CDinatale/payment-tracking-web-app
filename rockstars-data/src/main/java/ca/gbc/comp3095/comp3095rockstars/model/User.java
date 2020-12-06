@@ -11,10 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -48,6 +45,7 @@ public class User extends BaseEntity{
         this.address = address;
         this.email = email;
         this.password = password;
+
 
         if(roles == null){
             this.roles = "USER";
@@ -114,8 +112,9 @@ public class User extends BaseEntity{
     public void setAddress(String address) {
         this.address = address;
     }
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userForeignKey")
-    public Set<Profile> profiles = new
+    public Set<Profile> profiles;
 
     public List<String> getRoleList(){
         if(this.roles.length() > 0){
