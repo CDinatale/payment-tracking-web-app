@@ -22,10 +22,6 @@ import java.util.Set;
 
 public class UserPrincipal implements UserDetails {
 
-    public User getUser() {
-        return user;
-    }
-
     private User user;
 
     public UserPrincipal(User user){
