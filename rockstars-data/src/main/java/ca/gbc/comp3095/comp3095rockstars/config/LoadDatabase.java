@@ -43,10 +43,12 @@ public class LoadDatabase implements CommandLineRunner {
 
         User bilbo = new User("Bilbo", "Baggins", "30 Stadium Rd","admin@isp.net", passwordEncoder.encode("P@ssword1"), "ADMIN");
         User admin = new User("Frodo", "Baggins", "30 Stadium Rd","frodo.baggins@gmail.com", passwordEncoder.encode("P@ssword2"), "USER");
+        User a = new User("a", "aa", "30 Stadium Rd","a@a.aa", passwordEncoder.encode("a"), "USER");
+
         Profile profile1 = new Profile("Toronto", "Ca","n2n3n4", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), bilbo);
         Profile profile2 = new Profile("Toronto2", "ca","222222", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), admin);
 
-        List<User> users = Arrays.asList(bilbo,admin);
+        List<User> users = Arrays.asList(a, bilbo,admin);
         List<Profile> profiles = Arrays.asList(profile1,profile2);
 
         // Save to db
