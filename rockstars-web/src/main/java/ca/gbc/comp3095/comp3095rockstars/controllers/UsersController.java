@@ -25,14 +25,13 @@ public class UsersController {
 
     @GetMapping({"dashboard", "index"})
     public String dashboard(Model model ){
-
         model.addAttribute("users", userService.findAll());
         return "users/dashboard";
     }
 
     @GetMapping({"myProfile", "myProfile.html"})
     public String myProfile(Model model){
-        model.addAttribute("users", profileService.findAll());
+        model.addAttribute("profiles", profileService.findAll());
         return "users/myProfile";
     }
 

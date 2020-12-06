@@ -18,8 +18,8 @@ public class ProfileServiceImpl implements ProfileService{
     @Override
     public Set<Profile> findAll() {
 
-        Set<Profile> users = new HashSet<>(profileRepository.findAll());
-        return users;
+        Set<Profile> profiles = new HashSet<>(profileRepository.findAll());
+        return profiles;
     }
 
     @Override
