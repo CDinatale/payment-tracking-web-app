@@ -47,9 +47,13 @@ public class LoadDatabase implements CommandLineRunner {
 
         Profile profile1 = new Profile("Toronto", "Ca","n2n3n4", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), bilbo);
         Profile profile2 = new Profile("Toronto2", "ca","222222", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), admin);
+        Profile profile3 = new Profile("Toronto3", "Ca","n2n3n4", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), a);
+        Profile profile4 = new Profile("Toronto4", "ca","222222", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), admin);
+        Profile profile5 = new Profile("Toronto5", "Ca","n2n3n4", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), bilbo);
+        Profile profile6 = new Profile("Toronto6", "ca","222222", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), a);
 
         List<User> users = Arrays.asList(a, bilbo,admin);
-        List<Profile> profiles = Arrays.asList(profile1,profile2);
+        List<Profile> profiles = Arrays.asList(profile1,profile2,profile3,profile4,profile5,profile6);
 
         // Save to db
         this.userRepository.saveAll(users);

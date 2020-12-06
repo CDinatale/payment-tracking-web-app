@@ -47,6 +47,7 @@
 <br>
 <br>
 
+
 <div class="container">
 
     <h1>User Profiles</h1>
@@ -55,11 +56,55 @@
 <div class="container d-flex">
     <table>
         <tbody>
-            <tr th:each="profile : ${profiles}">
-                <td th:text="${profile.city}"></td>
-            </tr>
+        <tr>
+            <th>City</th>
+            <th>Country</th>
+            <th>Postal Code</th>
+            <th>Shipping Address</th>
+            <th>Billing Address</th>
+            <th>Shipping Default</th>
+            <th>Billing Default</th>
+            <th>Date Created</th>
+            <th>UserFK</th>
+        </tr>
+        <tr th:each="profile : ${profiles}">
+            <td th:text="${profile.city}"></td>
+            <td th:text="${profile.country}"></td>
+            <td th:text="${profile.postalCode}"></td>
+            <td th:text="${profile.shippingAddress}"></td>
+            <td th:text="${profile.billingAddress}"></td>
+            <td th:text="${profile.shippingAddressDefault}"></td>
+            <td th:text="${profile.billingAddressDefault}"></td>
+            <td th:text="${profile.dateCreated}"></td>
+            <td th:text="${profile.userForeignKey}"></td>
+        </tr>
+
         </tbody>
     </table>
+    <h2>Add Profile</h2>
+    <form th:action="@{/users/myProfile}" method="post">
+
+        <div class="form-group">
+            <label for="city">City</label>: <input type="text"
+                                                        id="city" name="text" class="form-control"
+                                                        autofocus="autofocus" th:required="required"/>
+        </div>
+        <div class="form-group">
+        <label for="country">Country</label>: <input type="text"
+                                                    id="country" name="country" class="form-control"
+                                                    th:required="required"/>
+    </div>
+
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <input type="submit" name="login-submit" id="login-submit"
+                           class="form-control btn btn-primary" value="Log In" />
+                </div>
+            </div>
+        </div>
 </div>
 <script type="text/javascript"
         th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
