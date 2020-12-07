@@ -21,24 +21,23 @@ public class User extends BaseEntity{
     @Column(nullable = false, name="first_name")
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="lastName")
     private String lastName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="address")
     private String address;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="email")
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="password")
     private String password;
-
-    @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
-    private long id;
 
     @Column
     private String roles;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<CreditProfile> creditProfiles = new HashSet<>();
 
     @Column
     private Date dateOfBirth;
@@ -94,7 +93,6 @@ public class User extends BaseEntity{
         this.email = email;
         this.password = password;
 
-
         if(roles == null){
             this.roles = "USER";
         }else{
@@ -136,7 +134,7 @@ public class User extends BaseEntity{
     public void setPassword(String password) {
         this.password = password;
     }
-
+/////?
     public void setId(long id) {
         this.id = id;
     }
@@ -144,13 +142,12 @@ public class User extends BaseEntity{
     public long getId() {
         return id;
     }
-
+/////
     public String getRoles() {
         return roles;
     }
 
     public void setRoles() {
-
         this.roles = "USER";
     }
 
@@ -178,6 +175,14 @@ public class User extends BaseEntity{
             return Arrays.asList(this.roles.split(","));
         }
         return new ArrayList<>();
+    }
+
+    public Set<CreditProfile> getCreditProfiles() {
+        return creditProfiles;
+    }
+
+    public void setCreditProfiles(Set<CreditProfile> creditProfiles) {
+        this.creditProfiles = creditProfiles;
     }
 
 }

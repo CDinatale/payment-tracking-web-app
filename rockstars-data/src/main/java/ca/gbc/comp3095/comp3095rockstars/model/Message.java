@@ -116,4 +116,6 @@ public class Message extends BaseEntity{
     public void setId(long id) {
         this.id = id;
     }
+    @Column(nullable = false)
+    private LocalDate dateCreated;
 }

@@ -24,6 +24,7 @@ import ca.gbc.comp3095.comp3095rockstars.model.User;
 import ca.gbc.comp3095.comp3095rockstars.security.UserPrincipal;
 import ca.gbc.comp3095.comp3095rockstars.services.MessageService;
 import ca.gbc.comp3095.comp3095rockstars.services.UserService;
+import ca.gbc.comp3095.comp3095rockstars.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +33,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("users")
@@ -69,7 +73,6 @@ public class UsersController {
 
     @GetMapping({"creditProfile", "creditProfile.html"})
     public String creditProfile(){
-
         return "users/creditProfile";
     }
 

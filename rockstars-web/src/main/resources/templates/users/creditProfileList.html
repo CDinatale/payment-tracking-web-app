@@ -48,7 +48,6 @@
 <br>
 <br>
 <br>
-
 <div class="container">
     <div class="row">
         <div>
@@ -83,28 +82,28 @@
 
                     <div class="form-group">
                         <label for="expiry" class="col-sm-2 col-form-label">Expiration Date</label>
-                            <input class="form-control" type="month" id="expiry" name="expiry" th:required="required">
+                        <input class="form-control" type="month" id="expiry" name="expiry" th:required="required">
                     </div>
 
                     <div class="form-group">
                         <label for="cardHolder" class="col-sm-2 col-form-label">Card Holder Name</label>
-                            <input class="form-control" type="text" id="cardHolder" name="cardHolder"
-                                   th:required="required">
+                        <input class="form-control" type="text" id="cardHolder" name="cardHolder"
+                               th:required="required">
                     </div>
 
                     <div class="form-group">
                         <label for="cardNumber" class="col-sm-2 col-form-label">Card Number</label>
-                            <input class="form-control" type="password" id="cardNumber" name="cardNumber"
-                                   th:required="required">
+                        <input class="form-control" type="password" id="cardNumber" name="cardNumber"
+                               th:required="required">
                     </div>
 
                     <div class="form-group ">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="defaultCreditCard"
-                                       name="defaultCreditCard">
-                                <label class="form-check-label" for="defaultCreditCard"> Save as Default or
-                                    Preferred</label>
-                            </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="defaultCreditCard"
+                                   name="defaultCreditCard">
+                            <label class="form-check-label" for="defaultCreditCard"> Save as Default or
+                                Preferred</label>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -120,6 +119,34 @@
             </fieldset>
         </div>
     </div>
+    <form>
+        <p>
+        <table class="table table-dark">
+            <thead>
+            <tr>
+                <th>Card Type</th>
+                <th>Expiry</th>
+                <th>Card Holder</th>
+                <th>Card Number</th>
+                <th>Default</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="creditProfile : ${creditProfiles}">
+                <td th:text="${creditProfile.type}"></td>
+                <td th:text="${creditProfile.expiry}"></td>
+                <td th:text="${creditProfile.cardHolder}"></td>
+                <td th:text="${creditProfile.cardNumber}"></td>
+                <td th:text="${creditProfile.defaultCreditCard}"></td>
+                <td> <a th:href="@{/delete/{id}(id=${creditProfile.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2">Remove</i></a></td>
+
+            </tr>
+            </tbody>
+        </table>
+        </p>
+    </form>
+
+
 
 </div>
 

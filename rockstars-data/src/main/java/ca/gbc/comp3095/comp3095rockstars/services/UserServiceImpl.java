@@ -29,6 +29,8 @@ public class UserServiceImpl implements UserService{
         return userRepository.findByEmail(email);
     }
 
+
+
     public User save(RegistrationForm registrationInfo) {
         User user = new User();
         user.setFirstName(registrationInfo.getFirstName());
