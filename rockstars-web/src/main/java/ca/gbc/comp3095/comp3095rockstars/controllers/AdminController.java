@@ -56,14 +56,8 @@ public class AdminController {
     
     @GetMapping({"inbox", "inbox.html"})
     public String inbox(Model model){
-        Set<Message> messages = messageService.findAll();
-        Set<Message> clientMessages = new java.util.HashSet<>(Collections.emptySet());
-        for (Message message:messages) {
-            if(message.getToWho().equals("admin@isp.net")){
-                clientMessages.add(message);
-            }
-        }
-        model.addAttribute("messages", clientMessages);
+        Set<Message> clientMessages = messageService.findAllAdmins();
+        model.addAttribute("messages", messageService.findAll());
         return "admin/inbox";
     }
 
@@ -83,9 +77,9 @@ public class AdminController {
         Date date = new Date();
         formatter.format(date);
         replyMessage.setDateCreated(date);
-        /*String email = userPrincipal.getUsername();
+        String email = replyMessage.getFromWho();
         User user = userService.findByEmail(email);
-        replyMessage.setUser(user);*/
+        replyMessage.setUser(user);
         messageService.save(replyMessage);
         return "redirect:dashboard";
     }

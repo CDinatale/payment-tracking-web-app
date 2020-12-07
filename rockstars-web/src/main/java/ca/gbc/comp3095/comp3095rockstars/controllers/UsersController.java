@@ -24,7 +24,6 @@ import java.util.Date;
 @Controller
 @RequestMapping("users")
 public class UsersController {
-
     private final UserService userService;
     private final MessageService messageService;
 
@@ -82,11 +81,12 @@ public class UsersController {
     //for support.html in templates/users folder
     @GetMapping({"support", "support.html"})
     public String support(Message message){
+
         return "users/support";
     }
 
     @PostMapping("add")
-    public String addMessage(@Valid Message messageForm, BindingResult result, Model model, UserPrincipal userPrincipal){
+    public String addMessage(@Valid Message messageForm, BindingResult result, Model model){
         if (result.hasErrors()) {
             return "users/support";
         }
@@ -94,9 +94,9 @@ public class UsersController {
         Date date = new Date();
         formatter.format(date);
         messageForm.setDateCreated(date);
-        /*String email = userPrincipal.getUsername();
+        String email = messageForm.getToWho();
         User user = userService.findByEmail(email);
-        messageForm.setUser(user);*/
+        messageForm.setUser(user);
         messageService.save(messageForm);
         return "redirect:dashboard";
     }
