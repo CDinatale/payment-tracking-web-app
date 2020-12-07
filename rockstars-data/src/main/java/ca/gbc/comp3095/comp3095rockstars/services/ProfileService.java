@@ -9,5 +9,5 @@ package ca.gbc.comp3095.comp3095rockstars.services;
 import ca.gbc.comp3095.comp3095rockstars.model.Profile;
 
 public interface ProfileService extends CrudService<Profile, Long>{
-
+    void save(Profile profile);
 }

@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head>
     <meta charset="UTF-8">
-    <title>Tab1</title>
+    <title>My Profile</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -50,7 +50,63 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <h1>UNDER CONSTRUCTION TAB 1 FOR USERS</h1>
+            <h1>MY PROFILES</h1>
+            <form th:action="@{/users/myProfile}" th:object="${profilesForm}" method="post">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>:
+                    <input class="form-control" type="text" id="firstName" name="firstName" th:value="*{firstName}">
+                </div>
+
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>:
+                    <input class="form-control" type="text" id="lastName" name="lastName" th:value="*{lastName}" >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>:
+                    <input class="form-control" type="email" id="email" name="email" th:value="*{email}" >
+                </div>
+
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>:
+                    <input class="form-control" type="date" id="dob" name="dob" th:value="*{dob}" >
+                </div>
+
+                <div class="form-group">
+                    <label for="shippingAddress">Shipping Address</label>:
+                    <input class="form-control" type="text" id="shippingAddress" name="shippingAddress" th:value="*{shippingAddress}" >
+                </div>
+
+                <div class="form-group">
+                    <label for="billingAddress">Billing Address</label>:
+                    <input class="form-control" type="text" id="billingAddress" name="billingAddress" th:value="*{billingAddress}" >
+                </div>
+
+                <div class="form-group">
+                    <label for="city">City</label>:
+                    <input class="form-control" type="text" id="city" name="city" th:value="*{city}">
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country</label>:
+                    <input class="form-control" type="text" id="country" name="country" th:value="*{country}">
+                </div>
+
+                <div class="form-group">
+                    <label for="postalCode">Postal</label>:
+                    <input class="form-control" type="text" id="postalCode" name="postalCode" th:value="*{postalCode}">
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input class="form-control btn btn-primary" id="submitProfile" name="submitProfile"
+                                   type="submit" value="Submit">
+                        </div>
+                    </div>
+
+                </div>
+            </form>
         </div>
     </div>
 

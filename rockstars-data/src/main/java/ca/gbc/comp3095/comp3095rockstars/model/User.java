@@ -11,9 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 @Entity
@@ -40,6 +38,10 @@ public class User extends BaseEntity{
 
     @Column
     private String roles;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="userForeignKey")
+    private Set<Profile> profiles = new HashSet<>();
+
 
     public User(String firstName, String lastName, String address, String email, String password, String roles) {
         this.firstName = firstName;
