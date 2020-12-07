@@ -19,6 +19,11 @@ import ca.gbc.comp3095.comp3095rockstars.security.UserPrincipalDetailsService;
 import ca.gbc.comp3095.comp3095rockstars.services.ProfileService;
 import ca.gbc.comp3095.comp3095rockstars.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import ca.gbc.comp3095.comp3095rockstars.model.Message;
+import ca.gbc.comp3095.comp3095rockstars.model.User;
+import ca.gbc.comp3095.comp3095rockstars.security.UserPrincipal;
+import ca.gbc.comp3095.comp3095rockstars.services.MessageService;
+import ca.gbc.comp3095.comp3095rockstars.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +36,8 @@ import java.util.Date;
 @Controller
 @RequestMapping("users")
 public class UsersController {
+    private final UserService userService;
+    private final MessageService messageService;
 
     private final UserService userService;
     private final ProfileService profileService;
@@ -46,11 +53,19 @@ public class UsersController {
         this.profileService = profileService;
         this.messageService = messageService;
     }
+    @ModelAttribute("messageForm")
+    public Message messageForm() {
+        return new Message();
+    }
+
+    public UsersController(UserService userService, MessageService messageService) {
+        this.userService = userService;
+        this.messageService = messageService;
+    }
 
 
     @GetMapping({"dashboard", "index"})
     public String dashboard(Model model ){
-
         model.addAttribute("users", userService.findAll());
         return "users/dashboard";
     }
@@ -61,6 +76,7 @@ public class UsersController {
     public String myProfile(Model model){
         model.addAttribute("users", userService.findAll());
         model.addAttribute("profiles", profileService.findAll());
+
         return "users/myProfile";
     }
 
@@ -99,7 +115,7 @@ public class UsersController {
     }
 
     @PostMapping("add")
-    public String addMessage(@Valid Message messageForm, BindingResult result, Model model, UserPrincipal userPrincipal){
+    public String addMessage(@Valid Message messageForm, BindingResult result, Model model){
         if (result.hasErrors()) {
             return "users/support";
         }
@@ -107,9 +123,9 @@ public class UsersController {
         Date date = new Date();
         formatter.format(date);
         messageForm.setDateCreated(date);
-        /*String email = userPrincipal.getUsername();
+        String email = messageForm.getToWho();
         User user = userService.findByEmail(email);
-        messageForm.setUser(user);*/
+        messageForm.setUser(user);
         messageService.save(messageForm);
         return "redirect:dashboard";
     }

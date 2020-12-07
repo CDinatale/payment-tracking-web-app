@@ -53,7 +53,7 @@ public class AdminController {
         return "admin/userListing";
     }
 
-    
+
     @GetMapping({"inbox", "inbox.html"})
     public String inbox(Model model){
         Set<Message> messages = messageService.findAll();
@@ -86,6 +86,39 @@ public class AdminController {
         /*String email = userPrincipal.getUsername();
         User user = userService.findByEmail(email);
         replyMessage.setUser(user);*/
+        messageService.save(replyMessage);
+        return "redirect:dashboard";
+    }
+
+
+    @GetMapping("remove/{id}")
+    public String deleteMessage(@PathVariable("id") long id) {
+        messageService.deleteById(id);
+    public String inbox(Model model){
+        Set<Message> clientMessages = messageService.findAllAdmins();
+        model.addAttribute("messages", messageService.findAll());
+        return "admin/inbox";
+    }
+
+    @GetMapping(path = "reply/{id}")
+    public String replyMessage(@PathVariable("id") long id, Model model) {
+        Message message = messageService.findById(id);
+        model.addAttribute("replyMessage", message);
+        return "admin/replyMessage";
+    }
+
+    @PostMapping("submitReply")
+    public String submitReplyMessage(@Valid Message replyMessage, BindingResult result, Model model, UserPrincipal userPrincipal){
+        if (result.hasErrors()) {
+            return "admin/support";
+        }
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        Date date = new Date();
+        formatter.format(date);
+        replyMessage.setDateCreated(date);
+        String email = replyMessage.getFromWho();
+        User user = userService.findByEmail(email);
+        replyMessage.setUser(user);
         messageService.save(replyMessage);
         return "redirect:dashboard";
     }

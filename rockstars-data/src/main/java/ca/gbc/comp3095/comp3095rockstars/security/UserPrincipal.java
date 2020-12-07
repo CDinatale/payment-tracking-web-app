@@ -9,6 +9,7 @@ package ca.gbc.comp3095.comp3095rockstars.security;
 
 import ca.gbc.comp3095.comp3095rockstars.model.Profile;
 import ca.gbc.comp3095.comp3095rockstars.model.User;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 

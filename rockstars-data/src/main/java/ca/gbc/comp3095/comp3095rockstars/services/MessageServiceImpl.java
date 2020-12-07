@@ -5,6 +5,7 @@ import ca.gbc.comp3095.comp3095rockstars.model.User;
 import ca.gbc.comp3095.comp3095rockstars.repository.MessageRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,19 @@ public class MessageServiceImpl implements MessageService{
 
     public MessageServiceImpl(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
+    }
+
+    public Set<Message> findAllAdmins(){
+        Set<Message> messages = new HashSet<>(messageRepository.findAll());
+
+        Set<Message> clientMessages = new java.util.HashSet<>(Collections.emptySet());
+
+        for (Message message:messages) {
+            if(message.getToWho().equals("admin@isp.net")){
+                clientMessages.add(message);
+            }
+        }
+        return clientMessages;
     }
 
 
