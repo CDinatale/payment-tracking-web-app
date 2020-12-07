@@ -83,30 +83,37 @@ public class AdminController {
         Date date = new Date();
         formatter.format(date);
         replyMessage.setDateCreated(date);
-        /*String email = userPrincipal.getUsername();
+        /////
+        String email = userPrincipal.getUsername();
         User user = userService.findByEmail(email);
-        replyMessage.setUser(user);*/
+        replyMessage.setUser(user);
         messageService.save(replyMessage);
         return "redirect:dashboard";
     }
 
+    /////////////////////????
 
-    @GetMapping("remove/{id}")
+    /*@GetMapping("remove/{id}")
     public String deleteMessage(@PathVariable("id") long id) {
         messageService.deleteById(id);
+        /////////////
+        return "admin/inbox";
+    }*/
+    /*
     public String inbox(Model model){
         Set<Message> clientMessages = messageService.findAllAdmins();
         model.addAttribute("messages", messageService.findAll());
         return "admin/inbox";
-    }
-
+    }*/
+    /*
     @GetMapping(path = "reply/{id}")
     public String replyMessage(@PathVariable("id") long id, Model model) {
         Message message = messageService.findById(id);
         model.addAttribute("replyMessage", message);
         return "admin/replyMessage";
     }
-
+    */
+    /*
     @PostMapping("submitReply")
     public String submitReplyMessage(@Valid Message replyMessage, BindingResult result, Model model, UserPrincipal userPrincipal){
         if (result.hasErrors()) {
@@ -122,7 +129,7 @@ public class AdminController {
         messageService.save(replyMessage);
         return "redirect:dashboard";
     }
-
+    */
 
     @GetMapping("remove/{id}")
     public String deleteMessage(@PathVariable("id") long id) {

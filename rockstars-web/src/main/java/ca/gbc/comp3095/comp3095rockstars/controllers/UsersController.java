@@ -37,9 +37,6 @@ import java.util.Date;
 @RequestMapping("users")
 public class UsersController {
     private final UserService userService;
-    private final MessageService messageService;
-
-    private final UserService userService;
     private final ProfileService profileService;
     private final MessageService messageService;
 
@@ -53,15 +50,6 @@ public class UsersController {
         this.profileService = profileService;
         this.messageService = messageService;
     }
-    @ModelAttribute("messageForm")
-    public Message messageForm() {
-        return new Message();
-    }
-
-    public UsersController(UserService userService, MessageService messageService) {
-        this.userService = userService;
-        this.messageService = messageService;
-    }
 
 
     @GetMapping({"dashboard", "index"})
@@ -71,7 +59,6 @@ public class UsersController {
     }
 
     @GetMapping({"myProfile", "myProfile.html"})
-    public String myProfile(){
 
     public String myProfile(Model model){
         model.addAttribute("users", userService.findAll());
