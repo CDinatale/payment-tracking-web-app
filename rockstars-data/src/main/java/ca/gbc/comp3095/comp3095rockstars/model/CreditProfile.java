@@ -37,6 +37,9 @@ public class CreditProfile extends BaseEntity{
 
     public CreditProfile() {
     }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     public CreditProfile(String type, String expiry, String cardHolder, Long cardNumber, String defaultCreditCard, LocalDate dateCardCreated, User user) {
         this.type = type;

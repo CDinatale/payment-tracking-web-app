@@ -30,7 +30,7 @@ public class Message extends BaseEntity{
     private String messageSubject;
 
     @Column(nullable = true, name="date_created")
-    private Date dateCreated;
+    private LocalDate dateCreated;
 
     @ManyToOne
     @JoinColumn(name ="user_id")
@@ -48,7 +48,7 @@ public class Message extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    public Message(String fromWho, String toWho, String status, String description, String messageSubject, Date dateCreated) {
+    public Message(String fromWho, String toWho, String status, String description, String messageSubject, LocalDate dateCreated) {
         this.fromWho = fromWho;
         this.toWho = toWho;
         this.status = status;
@@ -100,11 +100,11 @@ public class Message extends BaseEntity{
         this.messageSubject = messageSubject;
     }
 
-    public Date getDateCreated() {
+    public LocalDate getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDate dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -116,6 +116,5 @@ public class Message extends BaseEntity{
     public void setId(long id) {
         this.id = id;
     }
-    @Column(nullable = false)
-    private LocalDate dateCreated;
+
 }

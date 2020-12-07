@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -110,7 +111,7 @@ public class UsersController {
             return "users/support";
         }
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
+        LocalDate date = LocalDate.now();
         formatter.format(date);
         messageForm.setDateCreated(date);
         String email = messageForm.getToWho();

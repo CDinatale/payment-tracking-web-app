@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Set;
@@ -49,21 +50,15 @@ public class AdminController {
     }
 
     @GetMapping({"userListing", "userListing.html"})
-    public String userListing(){
+    public String userListing(Model model){
+        model.addAttribute("userList", userService.findAll());
         return "admin/userListing";
     }
 
 
     @GetMapping({"inbox", "inbox.html"})
     public String inbox(Model model){
-        Set<Message> messages = messageService.findAll();
-        Set<Message> clientMessages = new java.util.HashSet<>(Collections.emptySet());
-        for (Message message:messages) {
-            if(message.getToWho().equals("admin@isp.net")){
-                clientMessages.add(message);
-            }
-        }
-        model.addAttribute("messages", clientMessages);
+        model.addAttribute("messages", messageService.findAll());
         return "admin/inbox";
     }
 
@@ -75,16 +70,16 @@ public class AdminController {
     }
 
     @PostMapping("submitReply")
-    public String submitReplyMessage(@Valid Message replyMessage, BindingResult result, Model model, UserPrincipal userPrincipal){
+    public String submitReplyMessage(@Valid Message replyMessage, BindingResult result, Model model){
         if (result.hasErrors()) {
             return "admin/support";
         }
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        Date date = new Date();
+        LocalDate date = LocalDate.now();
         formatter.format(date);
         replyMessage.setDateCreated(date);
         /////
-        String email = userPrincipal.getUsername();
+        String email = replyMessage.getFromWho();
         User user = userService.findByEmail(email);
         replyMessage.setUser(user);
         messageService.save(replyMessage);
@@ -130,6 +125,8 @@ public class AdminController {
         return "redirect:dashboard";
     }
     */
+
+
 
     @GetMapping("remove/{id}")
     public String deleteMessage(@PathVariable("id") long id) {

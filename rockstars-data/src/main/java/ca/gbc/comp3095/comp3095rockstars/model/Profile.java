@@ -91,12 +91,12 @@ public class Profile extends BaseEntity{
         this.dateCreated = dateCreated;
     }
 
-    public long getProfile_id() {
-        return profile_id;
+    public long getId() {
+        return id;
     }
 
-    public void setProfile_id(long profile_id) {
-        this.profile_id = profile_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public User getUserForeignKey() {
@@ -133,7 +133,7 @@ public class Profile extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long profile_id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "uKey")

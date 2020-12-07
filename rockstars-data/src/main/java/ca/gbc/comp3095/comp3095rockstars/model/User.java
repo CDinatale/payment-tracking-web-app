@@ -55,6 +55,10 @@ public class User extends BaseEntity{
         return city;
     }
 
+    @Id
+    @GeneratedValue (strategy = GenerationType.AUTO)
+    private long id;
+
     public void setCity(String city) {
         this.city = city;
     }
@@ -134,7 +138,7 @@ public class User extends BaseEntity{
     public void setPassword(String password) {
         this.password = password;
     }
-/////?
+
     public void setId(long id) {
         this.id = id;
     }
@@ -142,7 +146,7 @@ public class User extends BaseEntity{
     public long getId() {
         return id;
     }
-/////
+
     public String getRoles() {
         return roles;
     }
