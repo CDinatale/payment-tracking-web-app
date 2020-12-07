@@ -90,6 +90,10 @@ public class User extends BaseEntity{
         this.dateOfBirth = dateOfBirth;
     }
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="userForeignKey")
+    private Set<Profile> profiles = new HashSet<>();
+
+
     public User(String firstName, String lastName, String address, String email, String password, String roles) {
         this.firstName = firstName;
         this.lastName = lastName;

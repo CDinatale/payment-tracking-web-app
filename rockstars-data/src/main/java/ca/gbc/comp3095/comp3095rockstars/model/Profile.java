@@ -27,6 +27,14 @@ public class Profile extends BaseEntity{
         this.userForeignKey = userForeignKey;
     }
 
+    public User getUserForeignKey() {
+        return userForeignKey;
+    }
+
+    public void setUserForeignKey(User userForeignKey) {
+        this.userForeignKey = userForeignKey;
+    }
+
     public String getCity() {
         return city;
     }
@@ -99,36 +107,72 @@ public class Profile extends BaseEntity{
         this.id = id;
     }
 
-    public User getUserForeignKey() {
-        return userForeignKey;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserForeignKey(User userForeignKey) {
-        this.userForeignKey = userForeignKey;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    @Column(nullable = false)
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Column(nullable = true)
+    private String firstName;
+
+    @Column(nullable = true)
+    private String lastName;
+
+    @Column(nullable = true)
+    private String dob;
+
+    @Column(nullable = true)
+    private String email;
+
+    @Column(nullable = true)
     private String city;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String country;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String postalCode;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String shippingAddress;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String billingAddress;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String shippingAddressDefault;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String billingAddressDefault;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDate dateCreated;
 
     @Id
@@ -136,7 +180,7 @@ public class Profile extends BaseEntity{
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "uKey")
+    @JoinColumn(name ="user_id")
     private User userForeignKey;
 
 

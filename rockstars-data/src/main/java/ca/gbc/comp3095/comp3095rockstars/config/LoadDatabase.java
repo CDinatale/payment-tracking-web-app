@@ -52,29 +52,16 @@ public class LoadDatabase implements CommandLineRunner {
         // Crete users
         User bilbo = new User("Bilbo", "Baggins", "30 Stadium Rd","admin@isp.net", passwordEncoder.encode("P@ssword1"), "ADMIN");
         User admin = new User("Frodo", "Baggins", "30 Stadium Rd","frodo.baggins@gmail.com", passwordEncoder.encode("P@ssword2"), "USER");
-        User a = new User("a", "aa", "30 Stadium Rd","a@a.aa", passwordEncoder.encode("a"), "USER");
-        //User admin = new User("Bilbo", "Baggins", "30 Stadium Rd","admin@isp.net", passwordEncoder.encode("P@ssword1"), "ADMIN");
-        User user = new User("Frodo", "Baggins", "30 Stadium Rd","gordon.baggins@gmail.com", passwordEncoder.encode("P@ssword2"), "USER");
-        //Message message1 = new Message("frodo", "bilbo", "unread", "I cannot find my password", "Password Problem", date);
-        //Message message2 = new Message("bilbo", "uncle", "read", "I will help you find your password", "Password Problem Fixed", date);
-        //message1.setUser(user);
-        //message2.setUser(admin);
-        //List<User> users = Arrays.asList(admin,user);
-        //List <Message> messages = Arrays.asList(message1, message2);
+        Profile profile1 = new Profile("Toronto", "Ca","n2n3n4", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), admin);
+        Profile profile2 = new Profile("Toronto2", "ca","222222", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), bilbo);
 
-       /* Profile profile1 = new Profile("Toronto", "Ca","n2n3n4", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), bilbo);
-        Profile profile2 = new Profile("Toronto2", "ca","222222", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), admin);
-        Profile profile3 = new Profile("Toronto3", "Ca","n2n3n4", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), a);
-        Profile profile4 = new Profile("Toronto4", "ca","222222", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), admin);
-        Profile profile5 = new Profile("Toronto5", "Ca","n2n3n4", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), bilbo);
-        Profile profile6 = new Profile("Toronto6", "ca","222222", "address ex 1", "addess ex 2", "def address 1", "def address 2", LocalDate.now(), a);
-*/
+
         List<User> users = Arrays.asList(a, bilbo,admin,user);
-        /*List<Profile> profiles = Arrays.asList(profile1,profile2,profile3,profile4,profile5,profile6);*/
+        List<Profile> profiles = Arrays.asList(profile1,profile2,profile3,profile4,profile5,profile6);
 
         // Save to db
         this.userRepository.saveAll(users);
-       /* this.profileRepository.saveAll(profiles);*/
+        this.profileRepository.saveAll(profiles);
 
         //this.messageRepository.saveAll(messages);
     }
