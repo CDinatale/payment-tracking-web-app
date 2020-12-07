@@ -1,4 +1,4 @@
-package comp3095rockstars;
+package ca.gbc.comp3095.comp3095rockstars;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
