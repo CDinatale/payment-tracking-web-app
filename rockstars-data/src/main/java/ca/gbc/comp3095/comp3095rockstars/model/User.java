@@ -9,6 +9,7 @@ package ca.gbc.comp3095.comp3095rockstars.model;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
 import javax.persistence.*;
 import java.util.*;
@@ -20,24 +21,74 @@ public class User extends BaseEntity{
     @Column(nullable = false, name="first_name")
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="lastName")
     private String lastName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="address")
     private String address;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="email")
     private String email;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name="password")
     private String password;
+
+    @Column
+    private String roles;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<CreditProfile> creditProfiles = new HashSet<>();
+
+    @Column
+    private Date dateOfBirth;
+
+    @Column
+    private String city;
+
+    @Column
+    private String country;
+
+    @Column
+    private String postalCode;
+
+    public String getCity() {
+        return city;
+    }
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private long id;
 
-    @Column
-    private String roles;
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="user")
+    private Set<Message> messages = new HashSet<>();
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy="userForeignKey")
     private Set<Profile> profiles = new HashSet<>();
@@ -108,6 +159,10 @@ public class User extends BaseEntity{
         this.roles = "USER";
     }
 
+    public void setRolesAdmin() {
+        this.roles = "ADMIN";
+    }
+
     public String getAddress() {
         return address;
     }
@@ -116,10 +171,26 @@ public class User extends BaseEntity{
         this.address = address;
     }
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userForeignKey")
+    public Set<Profile> profiles;
+
+    public Set<Profile> getProfiles(){
+        return profiles;
+    }
+
     public List<String> getRoleList(){
         if(this.roles.length() > 0){
             return Arrays.asList(this.roles.split(","));
         }
         return new ArrayList<>();
     }
+
+    public Set<CreditProfile> getCreditProfiles() {
+        return creditProfiles;
+    }
+
+    public void setCreditProfiles(Set<CreditProfile> creditProfiles) {
+        this.creditProfiles = creditProfiles;
+    }
+
 }

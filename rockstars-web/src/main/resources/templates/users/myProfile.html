@@ -7,6 +7,7 @@
 </head>
 
 <body>
+<div>
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -40,13 +41,46 @@
         </div>
     </div>
 </nav>
-
+</div>
 <br>
 <br>
 <br>
 <br>
 
 <div class="container">
+
+    <h1>User Profiles</h1>
+</div>
+<div class="container d-flex">
+    <table>
+        <tbody>
+        <tr>
+            <th>City</th>
+            <th>Country</th>
+            <th>Postal Code</th>
+            <th>Shipping Address</th>
+            <th>Billing Address</th>
+            <th>Shipping Default</th>
+            <th>Billing Default</th>
+            <th>Date Created</th>
+            <th>UserFK</th>
+        </tr>
+        <tr th:each="profile : ${profiles}"
+        th:if="${profile.userForeignKey.getEmail()}==${#authentication.getName()}">
+            <td th:text="${profile.city}"></td>
+            <td th:text="${profile.country}"></td>
+            <td th:text="${profile.postalCode}"></td>
+            <td th:text="${profile.shippingAddress}"></td>
+            <td th:text="${profile.billingAddress}"></td>
+            <td th:text="${profile.shippingAddressDefault}"></td>
+            <td th:text="${profile.billingAddressDefault}"></td>
+            <td th:text="${profile.dateCreated}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+    <h2>Add Profile</h2>
+    <div class="container">
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
@@ -109,10 +143,7 @@
             </form>
         </div>
     </div>
-
-
 </div>
-
 <script type="text/javascript"
         th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
 <script type="text/javascript"

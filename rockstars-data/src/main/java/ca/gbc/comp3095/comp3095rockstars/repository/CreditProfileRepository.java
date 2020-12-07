@@ -13,4 +13,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CreditProfileRepository extends JpaRepository<CreditProfile, Long> {
+    CreditProfile findByCardNumber(Long cardNumber);
 }

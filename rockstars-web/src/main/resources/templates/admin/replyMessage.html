@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 <head>
     <meta charset="UTF-8">
-    <title>Inbox</title>
+    <title>Reply Admin</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -49,29 +49,46 @@
 <div class="container">
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-3">
-            <h1>Message Inbox</h1>
+        <div class="col-md-6 col-md-offset-3">
+            <h1>Support Page</h1>
+            <h2>Description</h2>
+            <p th:text="${replyMessage.description}"></p>
+            <form th:action="@{/admin/submitReply}" th:object="${replyMessage}" method="post">
+                <h2>Support Ticket</h2>
 
-            <table class="table table-dark">
-                <thead>
-                <tr>
-                    <th>Ticket #</th>
-                    <th>Date Added</th>
-                    <th>Subject</th>
-                    <th>Action Read</th>
-                    <th>Action Remove</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="message : ${messages}" th:if="${message.toWho}==${#authentication.getName()}">
-                    <td th:text="${message.id}"></td>
-                    <td th:text="${message.dateCreated}"></td>
-                    <td th:text="${message.messageSubject}"></td>
-                    <td><a th:href="@{/users/read/{id}(id=${message.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i>Read</a></td>
-                    <td> <a th:href="@{/users/delete/{id}(id=${message.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2">Remove</i></a></td>
-                </tr>
-                </tbody>
-            </table>
+                <div class="form-group">
+                    <label for="toWho">To Email</label>:
+                    <input class="form-control" type="email" id="toWho" name="toWho" th:value="*{fromWho}">
+                </div>
+
+                <div class="form-group">
+                    <label for="fromWho">From Email</label>:
+                    <input class="form-control" type="email" id="fromWho" name="fromWho" th:value="*{toWho}">
+                </div>
+
+                <div class="form-group">
+                    <label for="messageSubject">Subject</label>:
+                    <input class="form-control" type="text" id="messageSubject" name="messageSubject" th:value="*{messageSubject}">
+                </div>
+
+                <div>
+                    <label for="description">Description</label>:
+                    <textarea rows = "5" cols = "60"  id="description" name = "description" th:value="*{description}">
+                    </textarea><br>
+                </div>
+
+
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input class="form-control btn btn-primary" id="submitMessage" name="submitMessage"
+                                   type="submit" value="Send Message">
+                        </div>
+                    </div>
+
+                </div>
+            </form>
         </div>
     </div>
 

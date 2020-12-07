@@ -12,6 +12,7 @@ import ca.gbc.comp3095.comp3095rockstars.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
@@ -42,22 +43,30 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Set<User> findAll() {
-        return null;
+    public User saveAdmin(User user) {
+        return userRepository.save(user);
     }
 
     @Override
-    public User findById(Long aLong) {
-        return null;
+    public Set<User> findAll() {
+        Set<User> users = new HashSet<>(userRepository.findAll());
+        return users;
+    }
+
+    @Override
+    public User findById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 
     @Override
     public void delete(User object) {
-
+        userRepository.delete(object);
     }
 
     @Override
     public void deleteById(Long aLong) {
-
+        userRepository.deleteById(aLong);
     }
+
+
 }

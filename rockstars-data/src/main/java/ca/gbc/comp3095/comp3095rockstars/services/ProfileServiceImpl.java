@@ -5,10 +5,12 @@ import ca.gbc.comp3095.comp3095rockstars.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
 public class ProfileServiceImpl implements ProfileService{
+
 
     @Autowired
     private ProfileRepository profileRepository;
@@ -18,9 +20,15 @@ public class ProfileServiceImpl implements ProfileService{
         profileRepository.save(profile);
     }
 
+    public ProfileServiceImpl(ProfileRepository profileRepository) {
+        this.profileRepository = profileRepository;
+    }
+
     @Override
     public Set<Profile> findAll() {
-        return null;
+
+        Set<Profile> profiles = new HashSet<>(profileRepository.findAll());
+        return profiles;
     }
 
     @Override

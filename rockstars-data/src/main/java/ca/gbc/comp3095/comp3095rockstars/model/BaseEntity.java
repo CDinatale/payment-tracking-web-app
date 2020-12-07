@@ -7,9 +7,15 @@
 
 package ca.gbc.comp3095.comp3095rockstars.model;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
 
+
 public class BaseEntity implements Serializable {
+
 
     private long id;
 

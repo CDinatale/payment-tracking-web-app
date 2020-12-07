@@ -7,7 +7,9 @@
 
 package ca.gbc.comp3095.comp3095rockstars.security;
 
+import ca.gbc.comp3095.comp3095rockstars.model.Profile;
 import ca.gbc.comp3095.comp3095rockstars.model.User;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -17,10 +19,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 public class UserPrincipal implements UserDetails {
 
-    private User user;
+    private final User user;
+
 
     public UserPrincipal(User user){
         this.user = user;
@@ -49,6 +53,8 @@ public class UserPrincipal implements UserDetails {
             return this.user.getEmail();
     }
 
+    public Set<Profile> getProfiles(){return this.user.getProfiles();}
+
     @Override
     public boolean isAccountNonExpired() {
         return true;
@@ -70,4 +76,8 @@ public class UserPrincipal implements UserDetails {
     }
 
     public Long getId() {return this.user.getId(); }
+
+    public User getUser(){
+        return this.user;
+    }
 }
