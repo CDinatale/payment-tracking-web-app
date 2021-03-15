@@ -1,2 +1,2 @@
-# comp3095-rockstars
-COMP 3095 – Java Web Application Development Assignment
+# Payment Processing Website 
+Web application that can manage and track user financial payments/transactions made using Spring framework
